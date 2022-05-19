@@ -1,3 +1,11 @@
+# AWS-Managed Opensearch Cluster
+
+## Description
+
+The Opensearch module is a reusable configuration that allows project teams to provision an AWS-Managed Opensearch cluster. This module supports manual snapshot management by incorporating an S3 bucket and appropriate IAM roles to allow snapshot exports and restore activity. 
+
+Please see the AWS documentation that describes how to [create index snapshots](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-snapshots.html) for more information.
+
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 

@@ -52,7 +52,7 @@ No modules.
 | <a name="input_log_retention"></a> [log\_retention](#input\_log\_retention) | The number of days to retain logs in the Opensearch cloudwatch log group | `number` | n/a | yes |
 | <a name="input_log_type"></a> [log\_type](#input\_log\_type) | Type of OpenSearch log. Valid values: INDEX\_SLOW\_LOGS, SEARCH\_SLOW\_LOGS, ES\_APPLICATION\_LOGS, AUDIT\_LOGS. | `string` | n/a | yes |
 | <a name="input_node_to_node_encryption"></a> [node\_to\_node\_encryption](#input\_node\_to\_node\_encryption) | Whether to enable node-to-node encryption. If the node\_to\_node\_encryption block is not provided then this defaults to false. | `bool` | n/a | yes |
-| <a name="input_subnet_ids"></a> [subnet\_ids](#input\_subnet\_ids) | The subnets to deploy the Opensearch cluster into. | `list` | n/a | yes |
+| <a name="input_private_subnet_ids"></a> [private\_subnet\_ids](#input\_private\_subnet\_ids) | The subnets to deploy the Opensearch cluster into. | `list` | n/a | yes |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | The ID of the VPC that the Opensearch cluster is deployed into. | `string` | n/a | yes |
 
 # Outputs

@@ -69,7 +69,7 @@ variable "node_to_node_encryption" {
   description = "Whether to enable node-to-node encryption. If the node_to_node_encryption block is not provided then this defaults to false."
 }
 
-variable "subnet_ids" {
+variable "private_subnet_ids" {
   type        = list
   description = "The subnets to deploy the Opensearch cluster into."
 }

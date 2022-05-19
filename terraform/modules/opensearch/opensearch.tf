@@ -12,7 +12,7 @@ resource "aws_opensearch_domain" "os" {
   }
 
   vpc_options {
-    subnet_ids         = var.subnet_ids
+    subnet_ids         = var.private_subnet_ids
     security_group_ids = [aws_security_group.opensearch.id]
   }
 

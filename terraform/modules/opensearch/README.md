@@ -51,11 +51,11 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_opensearch_arn"></a> [opensearch\_arn](#output\_opensearch\_arn) | n/a |
-| <a name="output_opensearch_cloudwatch_log_group_arn"></a> [opensearch\_cloudwatch\_log\_group\_arn](#output\_opensearch\_cloudwatch\_log\_group\_arn) | n/a |
-| <a name="output_opensearch_domain"></a> [opensearch\_domain](#output\_opensearch\_domain) | n/a |
-| <a name="output_opensearch_security_group_id"></a> [opensearch\_security\_group\_id](#output\_opensearch\_security\_group\_id) | n/a |
-| <a name="output_s3_snapshot_bucket_arn"></a> [s3\_snapshot\_bucket\_arn](#output\_s3\_snapshot\_bucket\_arn) | n/a |
-| <a name="output_s3_snapshot_bucket_name"></a> [s3\_snapshot\_bucket\_name](#output\_s3\_snapshot\_bucket\_name) | n/a |
-| <a name="output_snapshot_iam_role_arn"></a> [snapshot\_iam\_role\_arn](#output\_snapshot\_iam\_role\_arn) | n/a |
+| <a name="output_opensearch_arn"></a> [opensearch\_arn](#output\_opensearch\_arn) | The ARN for the Opensearch Cluster/Instance |
+| <a name="output_opensearch_cloudwatch_log_group_arn"></a> [opensearch\_cloudwatch\_log\_group\_arn](#output\_opensearch\_cloudwatch\_log\_group\_arn) | The ARN for the log group that stores Opensearch logs in CloudWatch |
+| <a name="output_opensearch_domain"></a> [opensearch\_domain](#output\_opensearch\_domain) | The Domain Name of the Opensearch Cluster/Instance |
+| <a name="output_opensearch_security_group_id"></a> [opensearch\_security\_group\_id](#output\_opensearch\_security\_group\_id) | The security group that controls access to the Opensearch Cluster/Instance |
+| <a name="output_s3_snapshot_bucket_arn"></a> [s3\_snapshot\_bucket\_arn](#output\_s3\_snapshot\_bucket\_arn) | The ARN of the S3 Bucket that stores snapshots for Opensearch |
+| <a name="output_s3_snapshot_bucket_name"></a> [s3\_snapshot\_bucket\_name](#output\_s3\_snapshot\_bucket\_name) | The bucket name for the S3 Bucket that stores snapshots for Opensearch |
+| <a name="output_snapshot_iam_role_arn"></a> [snapshot\_iam\_role\_arn](#output\_snapshot\_iam\_role\_arn) | The ARN for the IAM role that enables manual snapshot events for Opensearch |
 <!-- END_TF_DOCS -->

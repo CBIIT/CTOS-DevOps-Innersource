@@ -7,21 +7,21 @@ The Opensearch module is a reusable configuration that allows project teams to p
 Please see the AWS documentation that describes how to [create index snapshots](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-snapshots.html) for more information.
 
 <!-- BEGIN_TF_DOCS -->
-## Requirements
+# Requirements
 
 No requirements.
 
-## Providers
+# Providers
 
 | Name | Version |
 |------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | n/a |
 
-## Modules
+# Modules
 
 No modules.
 
-## Resources
+# Resources
 
 | Name | Type |
 |------|------|
@@ -34,7 +34,7 @@ No modules.
 | [aws_iam_policy_document.assume_role](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_iam_policy_document.os](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 
-## Inputs
+# Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
@@ -55,7 +55,7 @@ No modules.
 | <a name="input_subnet_ids"></a> [subnet\_ids](#input\_subnet\_ids) | The subnets to deploy the Opensearch cluster into. | `list` | n/a | yes |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | The ID of the VPC that the Opensearch cluster is deployed into. | `string` | n/a | yes |
 
-## Outputs
+# Outputs
 
 | Name | Description |
 |------|-------------|

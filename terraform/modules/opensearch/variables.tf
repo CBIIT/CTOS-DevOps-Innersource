@@ -58,10 +58,6 @@ variable "log_retention" {
   type = number
 }
 
-variable "enforce_https" {
-  type = bool
-}
-
 variable "vpc_id" {
   type = string
 }

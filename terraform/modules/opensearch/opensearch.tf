@@ -36,7 +36,4 @@ resource "aws_opensearch_domain" "os" {
     log_type                 = var.log_type
   }
 
-  domain_endpoint_options {
-    enforce_https = var.enforce_https
-  }
 }

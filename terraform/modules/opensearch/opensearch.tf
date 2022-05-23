@@ -23,16 +23,16 @@ resource "aws_opensearch_domain" "os" {
   }
 
   encrypt_at_rest {
-    enabled = var.encrypt_rest
+    enabled = true
   }
 
   node_to_node_encryption {
-    enabled = var.node_to_node_encryption
+    enabled = true
   }
 
   log_publishing_options {
     cloudwatch_log_group_arn = aws_cloudwatch_log_group.opensearch.arn
-    enabled                  = var.logs_enabled
+    enabled                  = var.true
     log_type                 = var.log_type
   }
 

@@ -17,23 +17,22 @@ todo:
 
 ## Module Configuration Insight
 
- **Network Notes** : 
+**Network Notes** : 
 > - Cluster is deployed with VPC support for an extra layer of security.
 > - Can be deployed into a single or multiple availability zones (2 zones), depending on configuration variables passed to the module.
 > - For each data node within each availability zone, a VPC endpoint is generated and placed within a private subnet dedicated to database instances. 
 
-
- **Security Notes** :
+**Security Notes** :
 > - Each VPC endpoint provisioned through the module is wrapped in a security group to control network accessibility of the cluster.
 > - Data stored within the cluster is encrypted at rest with the AWS OpenSearch KMS mechanism.
 > - Data in transit between the cluster nodes is encrypted in transit.
 
- **Storage Notes** :
+**Storage Notes** :
 > - It is recommended that an OpenSearch instance type that supports Elastic Block Storage (EBS) instance storage (avoid r6gd, r3, and i3 instance types).
 > - Sizing for storage is uniform across all data nodes. Please see AWS' documentation around best practices for [sizing domains](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/sizing-domains.html).
 > - The module does not allow consumers to configure master nodes due to the number of available availability zones within the NCI network topology (requires 3 or more availability zones).
 
- **Snapshot Notes** :
+**Snapshot Notes** :
 > - By default, AWS captures a daily snapshot of managed OpenSearch clusters deployed within a VPC. Consider setting the hour in which the snapshot occurs.
 > - Consumers can elect to manually manage snapshots. Manual snapshots are imported or exported on demand, and leverage a S3 bucket deployed in the account (which this module provisions on your behalf).
 > - Manual snapshot configurations do not negate the daily automated snapshot activity.
@@ -68,17 +67,14 @@ The reference architecture below depicts a multi-az deployment of an OpenSearch 
 | <a name="input_data_node_count"></a> [data\_node\_count](#input\_data\_node\_count) | n/a | `number` | n/a | yes |
 | <a name="input_ebs_enabled"></a> [ebs\_enabled](#input\_ebs\_enabled) | n/a | `bool` | n/a | yes |
 | <a name="input_ebs_volume_size"></a> [ebs\_volume\_size](#input\_ebs\_volume\_size) | n/a | `number` | n/a | yes |
-| <a name="input_encrypt_rest"></a> [encrypt\_rest](#input\_encrypt\_rest) | n/a | `bool` | n/a | yes |
 | <a name="input_engine_version"></a> [engine\_version](#input\_engine\_version) | n/a | `string` | n/a | yes |
 | <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | n/a | `string` | n/a | yes |
 | <a name="input_jenkins_host_id"></a> [jenkins\_host\_id](#input\_jenkins\_host\_id) | n/a | `string` | n/a | yes |
-| <a name="input_log_retention"></a> [log\_retention](#input\_log\_retention) | n/a | `number` | n/a | yes |
-| <a name="input_log_type"></a> [log\_type](#input\_log\_type) | n/a | `string` | n/a | yes |
-| <a name="input_logs_enabled"></a> [logs\_enabled](#input\_logs\_enabled) | n/a | `bool` | n/a | yes |
+| <a name="input_log_retention"></a> [log\_retention](#input\_log\_retention) | The number of days to save OpenSearch logs sent to CloudWatch | `number` | n/a | yes |
+| <a name="input_log_type"></a> [log\_type](#input\_log\_type) | The type of OpenSearch logs to forward to CloudWatch. Options include 'INDEX\_SLOW\_LOGS, 'SEARCH\_SLOW\_LOGS', 'ES\_APPLICATION\_LOGS', and 'AUDIT\_LOGS' | `string` | `"INDEX_SLOW_LOGS"` | no |
 | <a name="input_multi-az"></a> [multi-az](#input\_multi-az) | n/a | `bool` | n/a | yes |
-| <a name="input_node_to_node_encryption"></a> [node\_to\_node\_encryption](#input\_node\_to\_node\_encryption) | n/a | `bool` | n/a | yes |
-| <a name="input_snapshot_hour"></a> [snapshot\_hour](#input\_snapshot\_hour) | n/a | `number` | n/a | yes |
-| <a name="input_subnet_ids"></a> [subnet\_ids](#input\_subnet\_ids) | n/a | `set(string)` | n/a | yes |
+| <a name="input_snapshot_hour"></a> [snapshot\_hour](#input\_snapshot\_hour) | The hour in which OpenSearch will perform automated snapshot operations | `number` | `23` | no |
+| <a name="input_subnet_ids"></a> [subnet\_ids](#input\_subnet\_ids) | The subnets which OpenSearch will be deployed to | `set(string)` | n/a | yes |
 | <a name="input_tier"></a> [tier](#input\_tier) | n/a | `string` | n/a | yes |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | n/a | `string` | n/a | yes |
 

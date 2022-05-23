@@ -35,10 +35,6 @@ table of contents:
 ![Opensearch Boundary](./assets/diagram.png)
 
 <!-- BEGIN_TF_DOCS -->
-## Requirements
-
-No requirements.
-
 ## Resources
 
 | Name | Type |

@@ -1,8 +1,7 @@
 # OpenSearch with Manual Snapshots
 
 todo:
-- Table of Contents
-- General Description
+- General README.md Description
 - variable descriptions
 - remove ability to opt-out of encryption (hard default)
 - cloudwatch logs --> sumologic
@@ -10,11 +9,11 @@ todo:
 
 ## Table of Contents
 
-1. [Module Configuration Insight](https://github.com/CBIIT/CTOS-DevOps-Innersource/terraform/modules/opensearch#module-configuration-insight)
-2. [Reference Architecture](https://github.com/CBIIT/CTOS-DevOps-Innersource/terraform/modules/opensearch#reference-architecture)
-3. [Resources](https://github.com/CBIIT/CTOS-DevOps-Innersource/terraform/modules/opensearch#resources)
-4. [Inputs](https://github.com/CBIIT/CTOS-DevOps-Innersource/terraform/modules/opensearch#inputs)
-5. [Outputs](https://github.com/CBIIT/CTOS-DevOps-Innersource/terraform/modules/opensearch#outputs)
+1. [Module Configuration Insight](https://github.com/CBIIT/CTOS-DevOps-Innersource/tree/main/terraform/modules/opensearch#module-configuration-insight)
+2. [Reference Architecture](https://github.com/CBIIT/CTOS-DevOps-Innersource/terraform)
+3. [Resources](https://github.com/CBIIT/CTOS-DevOps-Innersource/tree/main/terraform/modules/opensearch#resources)
+4. [Inputs](https://github.com/CBIIT/CTOS-DevOps-Innersource/tree/main/terraform/modules/opensearch#inputs)
+5. [Outputs](https://github.com/CBIIT/CTOS-DevOps-Innersource/tree/main/terraform/modules/opensearch#outputs)
 
 ## Module Configuration Insight
 
@@ -37,6 +36,8 @@ todo:
 - By default, AWS captures a daily snapshot of managed OpenSearch clusters deployed within a VPC. Consider setting the hour in which the snapshot occurs.
 - Consumers can elect to manually manage snapshots. Manual snapshots are imported or exported on demand, and leverage a S3 bucket deployed in the account (which this module provisions on your behalf).
 - Manual snapshot configurations do not negate the daily automated snapshot activity.
+
+## Reference Architecture
 
 ![Opensearch Boundary](./assets/diagram.png)
 

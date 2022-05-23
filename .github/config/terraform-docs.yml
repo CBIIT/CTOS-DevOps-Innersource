@@ -2,7 +2,6 @@ formatter: markdown table
 sections:
   hide-all: true
   show:
-    - requirements
     - resources
     - inputs 
     - outputs

@@ -20,3 +20,4 @@ jobs:
         output-method: inject 
         recursive: true
         git-push: true
+        config-file: CTOS-DevOps-Innersource/.github/config/terraform-docs.yml

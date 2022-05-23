@@ -22,18 +22,15 @@ table of contents:
 - Data stored within the cluster is encrypted at rest with the AWS OpenSearch KMS mechanism.
 - Data in transit between the cluster nodes is encrypted in transit.
 
-**Storage**
-- It is recommended that an OpenSearch instance type that supports Elastic Block Storage (EBS) instance storage (avoid r6gd, r3, and i3 instance types)
-- Sizing for storage is uniform across all data nodes. Please see AWS' documentation around best practices for [sizing domains](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/sizing-domains.html)
-
-**Nodes**
-- no master nodes (requires 3+ AZs)
-- data nodes, select instance class that supports EBS
-- sizing of voumes
+**Storage & Data Nodes**
+- It is recommended that an OpenSearch instance type that supports Elastic Block Storage (EBS) instance storage (avoid r6gd, r3, and i3 instance types).
+- Sizing for storage is uniform across all data nodes. Please see AWS' documentation around best practices for [sizing domains](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/sizing-domains.html).
+- The module does not allow consumers to configure master nodes due to the number of available availability zones within the NCI network topology (requires 3 or more availability zones).
 
 **Snapshots**
-- automated snapshots
-- manual snapshots
+- By default, AWS captures a daily snapshot of managed OpenSearch clusters deployed within a VPC. Consider setting the hour in which the snapshot occurs.
+- Consumers can elect to manually manage snapshots. Manual snapshots are imported or exported on demand, and leverage a S3 bucket deployed in the account (which this module provisions on your behalf).
+- Manual snapshot configurations do not negate the daily automated snapshot activity.
 
 ![Opensearch Boundary](./assets/diagram.png)
 

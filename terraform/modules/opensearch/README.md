@@ -9,7 +9,7 @@ table of contents:
 
 ## Reference Architecture
 
-**Network**
+**Network** : 
 The OpenSearch module is designed to deploy the OpenSearch cluster with VPC-support, adding an extra layer of security. Consumers can configure a single availability zone or multiple availability zone deployments, so long as the multi-az deployment spans two availability zones. For each data node in the cluster, a VPC endpoint is generated and placed within a private subnet dedicated to database instances. Therefore, if you configure two data nodes per instance across two availability zones, four endpoints are provisioned. 
 
 **Security**

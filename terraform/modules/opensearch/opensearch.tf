@@ -32,7 +32,7 @@ resource "aws_opensearch_domain" "os" {
 
   log_publishing_options {
     cloudwatch_log_group_arn = aws_cloudwatch_log_group.opensearch.arn
-    enabled                  = var.true
+    enabled                  = true
     log_type                 = var.log_type
   }
 

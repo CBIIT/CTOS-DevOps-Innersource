@@ -39,6 +39,7 @@ todo:
 > - Manual snapshot configurations do not negate the daily automated snapshot activity.
 
 ## Reference Architecture
+The reference architecture below depicts a multi-az deployment of an OpenSearch cluster that is using an EBS-enabled instance type. The cluster is configured with two data nodes per instance, which equates to a total of four data nodes and four VPC endpoints across the region. Lastly, this reference architecture reflects a configuration that enables manual snapshot activity. Snapshots are stored in AWS S3, and are managed by executables on the Jenkins host instance.
 
 ![Opensearch Boundary](./assets/diagram.png)
 

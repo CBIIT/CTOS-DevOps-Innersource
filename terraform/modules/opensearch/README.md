@@ -10,7 +10,7 @@ todo:
 ## Table of Contents
 
 1. [Module Configuration Insight](https://github.com/CBIIT/CTOS-DevOps-Innersource/tree/main/terraform/modules/opensearch#module-configuration-insight)
-2. [Reference Architecture](https://github.com/CBIIT/CTOS-DevOps-Innersource/terraform)
+2. [Reference Architecture](https://github.com/CBIIT/CTOS-DevOps-Innersource/tree/main/terraform/modules/opensearch#reference-architecture)
 3. [Resources](https://github.com/CBIIT/CTOS-DevOps-Innersource/tree/main/terraform/modules/opensearch#resources)
 4. [Inputs](https://github.com/CBIIT/CTOS-DevOps-Innersource/tree/main/terraform/modules/opensearch#inputs)
 5. [Outputs](https://github.com/CBIIT/CTOS-DevOps-Innersource/tree/main/terraform/modules/opensearch#outputs)
@@ -18,9 +18,9 @@ todo:
 ## Module Configuration Insight
 
 **Network** : 
-- Cluster is deployed with VPC support for an extra layer of security.
-- Can be deployed into a single or multiple availability zones (2 zones), depending on configuration variables passed to the module.
-- For each data node within each availability zone, a VPC endpoint is generated and placed within a private subnet dedicated to database instances. 
+> - Cluster is deployed with VPC support for an extra layer of security.
+> - Can be deployed into a single or multiple availability zones (2 zones), depending on configuration variables passed to the module.
+> - For each data node within each availability zone, a VPC endpoint is generated and placed within a private subnet dedicated to database instances. 
 
 **Security**
 - Each VPC endpoint provisioned through the module is wrapped in a security group to control network accessibility of the cluster.

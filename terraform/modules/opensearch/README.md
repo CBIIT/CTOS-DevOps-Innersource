@@ -4,6 +4,7 @@ todo:
 - Table of Contents
 - General Description
 - variable descriptions
+- remove ability to opt-out of encryption (hard default)
 - cloudwatch logs --> sumologic
 ... add description for what this module provides.
 
@@ -12,14 +13,18 @@ table of contents:
 ## Reference Architecture
 
 **Network** : 
-The OpenSearch module is designed to deploy the OpenSearch cluster with VPC-support, adding an extra layer of security. Consumers can configure a single availability zone or multiple availability zone deployments, so long as the multi-az deployment spans two availability zones. For each data node in the cluster, a VPC endpoint is generated and placed within a private subnet dedicated to database instances. Therefore, if you configure two data nodes per instance across two availability zones, four endpoints are provisioned. 
+- Cluster is deployed with VPC support for an extra layer of security.
+- Can be deployed into a single or multiple availability zones (2 zones), depending on configuration variables passed to the module.
+- For each data node within each availability zone, a VPC endpoint is generated and placed within a private subnet dedicated to database instances. 
 
 **Security**
-- security groups
-- encryption at rest
-- encryption in transit
+- Each VPC endpoint provisioned through the module is wrapped in a security group to control network accessibility of the cluster.
+- Data stored within the cluster is encrypted at rest with the AWS OpenSearch KMS mechanism.
+- Data in transit between the cluster nodes is encrypted in transit.
 
 **Storage**
+- It is recommended that an OpenSearch instance type that supports Elastic Block Storage (EBS) instance storage (avoid r6gd, r3, and i3 instance types)
+- Sizing for storage is uniform across all data nodes. Please see AWS' documentation around best practices for [sizing domains](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/sizing-domains.html)
 
 **Nodes**
 - no master nodes (requires 3+ AZs)

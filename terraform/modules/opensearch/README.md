@@ -8,9 +8,15 @@ todo:
 - cloudwatch logs --> sumologic
 ... add description for what this module provides.
 
-table of contents:
+## Table of Contents
 
-## Reference Architecture
+1. [Module Configuration Insight](https://github.com/CBIIT/CTOS-DevOps-Innersource/terraform/modules/opensearch#module-configuration-insight)
+2. [Reference Architecture](https://github.com/CBIIT/CTOS-DevOps-Innersource/terraform/modules/opensearch#reference-architecture)
+3. [Resources](https://github.com/CBIIT/CTOS-DevOps-Innersource/terraform/modules/opensearch#resources)
+4. [Inputs](https://github.com/CBIIT/CTOS-DevOps-Innersource/terraform/modules/opensearch#inputs)
+5. [Outputs](https://github.com/CBIIT/CTOS-DevOps-Innersource/terraform/modules/opensearch#outputs)
+
+## Module Configuration Insight
 
 **Network** : 
 - Cluster is deployed with VPC support for an extra layer of security.

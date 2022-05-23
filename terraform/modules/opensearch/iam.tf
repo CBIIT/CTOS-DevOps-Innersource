@@ -1,6 +1,7 @@
 resource "aws_iam_role" "os_snapshot" {
   name               = local.snapshot_role
   assume_role_policy = data.aws_iam_policy_document.os_sts.json
+  permissions_boundary = var.permission_boundary_arn
 }
 
 resource "aws_iam_policy" "os_snapshot" {

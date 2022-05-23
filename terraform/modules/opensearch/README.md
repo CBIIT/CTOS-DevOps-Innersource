@@ -17,23 +17,22 @@ todo:
 
 ## Module Configuration Insight
 
- **Network Notes** : 
+**Network Notes** : 
 > - Cluster is deployed with VPC support for an extra layer of security.
 > - Can be deployed into a single or multiple availability zones (2 zones), depending on configuration variables passed to the module.
 > - For each data node within each availability zone, a VPC endpoint is generated and placed within a private subnet dedicated to database instances. 
 
-
- **Security Notes** :
+**Security Notes** :
 > - Each VPC endpoint provisioned through the module is wrapped in a security group to control network accessibility of the cluster.
 > - Data stored within the cluster is encrypted at rest with the AWS OpenSearch KMS mechanism.
 > - Data in transit between the cluster nodes is encrypted in transit.
 
- **Storage Notes** :
+**Storage Notes** :
 > - It is recommended that an OpenSearch instance type that supports Elastic Block Storage (EBS) instance storage (avoid r6gd, r3, and i3 instance types).
 > - Sizing for storage is uniform across all data nodes. Please see AWS' documentation around best practices for [sizing domains](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/sizing-domains.html).
 > - The module does not allow consumers to configure master nodes due to the number of available availability zones within the NCI network topology (requires 3 or more availability zones).
 
- **Snapshot Notes** :
+**Snapshot Notes** :
 > - By default, AWS captures a daily snapshot of managed OpenSearch clusters deployed within a VPC. Consider setting the hour in which the snapshot occurs.
 > - Consumers can elect to manually manage snapshots. Manual snapshots are imported or exported on demand, and leverage a S3 bucket deployed in the account (which this module provisions on your behalf).
 > - Manual snapshot configurations do not negate the daily automated snapshot activity.

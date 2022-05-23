@@ -60,11 +60,6 @@ variable "jenkins_host_id" {
   type = string
 }
 
-variable "permission_boundary_arn" {
-  type = string 
-  default = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:policy/PermissionBoundary_PowerUser"
-}
-
 variable "policy_prefix" {
   type = string 
   default = "power-user"

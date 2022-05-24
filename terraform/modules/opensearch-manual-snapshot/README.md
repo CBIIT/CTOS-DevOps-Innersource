@@ -1,5 +1,7 @@
 # OpenSearch with Manual Snapshots
 
+:dart: Architected by Yizhen Chen
+
 This module expands on the generic OpenSearch module offered in this registry by supporting the manual snapshot capability. Moving data from one snapshot to another, or recovering a cluster, can be simplified with a manual snapshot procedure. Snapshots created manually are stored in an S3 bucket that consumers create within this module. In addition to the standard services provisioned in the generic OpenSearch module, this module produces an S3 bucket and the necessary roles and policies to support manual snapshot management within context of an NCI AWS environment.
 
 For more information, please see AWS' documentation on [creating index snapshots in Amazon OpenSearch Service](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-snapshots.html).

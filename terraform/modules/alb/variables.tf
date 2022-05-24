@@ -5,12 +5,12 @@ variable "app" {
 }
 
 variable "vpc_id" {
-  type = string 
+  type        = string
   description = "The target VPC for which to deploy the stack into"
 }
 
 variable "tier" {
-  type = string 
+  type        = string
   description = "The target tier for the deployment. If using workspaces, provide 'terraform.workspace' as the input for this variable"
 }
 
@@ -49,12 +49,18 @@ variable "create_timeout" {
   default     = "10 minutes"
 }
 
+variable "alb_listener_ssl_policy" {
+  type        = string
+  description = "Name of the SSL Policy for the associated listener, which is required if the protocol is TLS or HTTPS"
+  default     = "ELBSecurityPolicy-2016-08"
+}
+
 # Security Group Variables
 
 variable "alb_inbound_cidr" {
-  type = string 
+  type = string
 }
 
 variable "alb_outbound_cidr" {
-  
+
 }

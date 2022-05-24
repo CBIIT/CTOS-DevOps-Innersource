@@ -71,6 +71,7 @@ The reference architecture below depicts a multi-az deployment of an OpenSearch 
 | <a name="input_iam_prefix"></a> [iam\_prefix](#input\_iam\_prefix) | n/a | `string` | `"power-user"` | no |
 | <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | n/a | `string` | n/a | yes |
 | <a name="input_jenkins_host_id"></a> [jenkins\_host\_id](#input\_jenkins\_host\_id) | n/a | `string` | n/a | yes |
+| <a name="input_jenkins_profile_role_name"></a> [jenkins\_profile\_role\_name](#input\_jenkins\_profile\_role\_name) | The name of the role associated with the instance profile for the EC2 that is the Jenkins host | `string` | n/a | yes |
 | <a name="input_log_retention"></a> [log\_retention](#input\_log\_retention) | The number of days to save OpenSearch logs sent to CloudWatch | `number` | n/a | yes |
 | <a name="input_log_type"></a> [log\_type](#input\_log\_type) | The type of OpenSearch logs to forward to CloudWatch. Options include 'INDEX\_SLOW\_LOGS, 'SEARCH\_SLOW\_LOGS', 'ES\_APPLICATION\_LOGS', and 'AUDIT\_LOGS' | `string` | `"INDEX_SLOW_LOGS"` | no |
 | <a name="input_multi-az"></a> [multi-az](#input\_multi-az) | n/a | `bool` | n/a | yes |

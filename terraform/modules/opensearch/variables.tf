@@ -64,3 +64,8 @@ variable "iam_prefix" {
   type = string 
   default = "power-user"
 }
+
+variable "jenkins_profile_role_name" {
+  type = string 
+  description = "The name of the role associated with the instance profile for the EC2 that is the Jenkins host"
+}

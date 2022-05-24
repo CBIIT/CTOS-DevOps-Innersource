@@ -5,7 +5,6 @@ This module expands on the generic OpenSearch module offered in this registry by
 For more information, please see AWS' documentation on [creating index snapshots in Amazon OpenSearch Service](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-snapshots.html).
 
 todo:
-- variable descriptions
 - cloudwatch logs --> sumologic
 
 ## Table of Contents

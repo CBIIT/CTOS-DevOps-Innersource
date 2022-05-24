@@ -4,10 +4,12 @@ variable "app" {
 
 variable "tier" {
   type = string
+  description = "The target tier for the deployment. If using workspaces, provide 'terraform.workspace' as the input variable value"
 }
 
 variable "engine_version" {
   type = string
+  description = "The engine version of the OpenSearch cluster. Examples include OpenSearch_1.0 and OpenSearch_1.2"
 }
 
 variable "instance_type" {

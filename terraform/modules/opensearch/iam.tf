@@ -21,6 +21,6 @@ resource "aws_iam_policy" "jenkins_snapshot" {
 }
 
 resource "aws_iam_role_policy_attachment" "jenkins_snapshot" {
-  role       = data.aws_instance.jenkins_host.iam_instance_profile
+  role       = var.jenkins_profile_role_name
   policy_arn = aws_iam_policy.jenkins_snapshot.arn
 }

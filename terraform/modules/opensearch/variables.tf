@@ -60,7 +60,7 @@ variable "jenkins_host_id" {
   type = string
 }
 
-variable "policy_prefix" {
+variable "iam_prefix" {
   type = string 
   default = "power-user"
 }

@@ -1,5 +1,6 @@
 variable "app" {
   type = string
+  description = "The name of the application, often times an acronym in all lower case (i.e. 'mtp')."
 }
 
 variable "tier" {

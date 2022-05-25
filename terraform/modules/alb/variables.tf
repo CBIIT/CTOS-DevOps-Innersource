@@ -15,11 +15,6 @@ variable "tier" {
 }
 
 # ALB Variables
-variable "internal" {
-  type        = bool
-  description = "Sets the ALB to be internal if access to the internet is not available"
-}
-
 variable "type" {
   type        = string
   description = "The type of load balancer to create. Possible values are application, gateway, or network. The default value is application"
@@ -53,6 +48,10 @@ variable "alb_listener_ssl_policy" {
   type        = string
   description = "Name of the SSL Policy for the associated listener, which is required if the protocol is TLS or HTTPS"
   default     = "ELBSecurityPolicy-2016-08"
+}
+
+variable "use_wildcard_cert" {
+  type = bool
 }
 
 # Security Group Variables

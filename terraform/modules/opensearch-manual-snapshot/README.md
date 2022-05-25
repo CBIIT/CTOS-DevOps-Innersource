@@ -63,7 +63,7 @@ The reference architecture below depicts a multi-az deployment of an OpenSearch 
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_app"></a> [app](#input\_app) | n/a | `string` | n/a | yes |
+| <a name="input_app"></a> [app](#input\_app) | The name of the application, often times an acronym in all lower case (i.e. 'mtp'). | `string` | n/a | yes |
 | <a name="input_data_node_count"></a> [data\_node\_count](#input\_data\_node\_count) | n/a | `number` | n/a | yes |
 | <a name="input_ebs_enabled"></a> [ebs\_enabled](#input\_ebs\_enabled) | n/a | `bool` | n/a | yes |
 | <a name="input_ebs_volume_size"></a> [ebs\_volume\_size](#input\_ebs\_volume\_size) | n/a | `number` | n/a | yes |

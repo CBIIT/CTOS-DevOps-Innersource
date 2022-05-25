@@ -7,3 +7,6 @@ sections:
     - outputs
   settings:
     indent: 1
+  sort:
+    enabled: true
+    by: required

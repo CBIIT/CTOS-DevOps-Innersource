@@ -21,6 +21,11 @@ variable "type" {
   default     = "application"
 }
 
+variable "internal" {
+  type = bool
+  description = "Set to true for non-prod accounts that do not have egress out to the internet or public subnets."
+}
+
 variable "drop_invalid_header" {
   type        = bool
   description = "Indicates whether HTTP headers with header fields that are not valid are removed by the load balancer (true) or routed to targets (false). The default is false. Elastic Load Balancing requires that message header names contain only alphanumeric characters and hyphens. Only valid for Load Balancers of type application."

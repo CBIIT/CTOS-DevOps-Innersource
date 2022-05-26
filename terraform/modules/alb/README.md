@@ -27,6 +27,7 @@
 | <a name="input_drop_invalid_header"></a> [drop\_invalid\_header](#input\_drop\_invalid\_header) | Indicates whether HTTP headers with header fields that are not valid are removed by the load balancer (true) or routed to targets (false). The default is false. Elastic Load Balancing requires that message header names contain only alphanumeric characters and hyphens. Only valid for Load Balancers of type application. | `bool` | `true` | no |
 | <a name="input_enable_deletion_protection"></a> [enable\_deletion\_protection](#input\_enable\_deletion\_protection) | If true, deletion of the load balancer will be disabled via the AWS API. This will prevent Terraform from deleting the load balancer. Defaults to false. | `bool` | `true` | no |
 | <a name="input_inbound_cidr"></a> [inbound\_cidr](#input\_inbound\_cidr) | n/a | `list(string)` | n/a | yes |
+| <a name="input_internal"></a> [internal](#input\_internal) | Set to true for non-prod accounts that do not have egress out to the internet or public subnets. | `bool` | n/a | yes |
 | <a name="input_listener_ssl_policy"></a> [listener\_ssl\_policy](#input\_listener\_ssl\_policy) | Name of the SSL Policy for the associated listener, which is required if the protocol is TLS or HTTPS | `string` | `"ELBSecurityPolicy-2016-08"` | no |
 | <a name="input_outbound_cidr"></a> [outbound\_cidr](#input\_outbound\_cidr) | n/a | `list(string)` | n/a | yes |
 | <a name="input_subnets"></a> [subnets](#input\_subnets) | The subnets for which the ALBs point to. | `set(string)` | n/a | yes |

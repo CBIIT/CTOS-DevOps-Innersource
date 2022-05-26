@@ -4,14 +4,14 @@ variable "app" {
   description = "The name of the stack or application for this deployment"
 }
 
-variable "vpc_id" {
-  type        = string
-  description = "The target VPC for which to deploy the stack into"
-}
-
 variable "tier" {
   type        = string
   description = "The target tier for the deployment. If using workspaces, provide 'terraform.workspace' as the input for this variable"
+}
+
+variable "vpc_id" {
+  type        = string
+  description = "The target VPC for which to deploy the stack into"
 }
 
 # ALB Variables
@@ -57,6 +57,8 @@ variable "listener_ssl_policy" {
 
 variable "use_wildcard_cert" {
   type = bool
+  description = "Set to true to query target account for a '*.cancer.gov' wildcard certificate to associate with the ALB"
+  default = false
 }
 
 # Security Group Variables

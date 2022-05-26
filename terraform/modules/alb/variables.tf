@@ -44,7 +44,7 @@ variable "create_timeout" {
   default     = "10 minutes"
 }
 
-variable "alb_listener_ssl_policy" {
+variable "listener_ssl_policy" {
   type        = string
   description = "Name of the SSL Policy for the associated listener, which is required if the protocol is TLS or HTTPS"
   default     = "ELBSecurityPolicy-2016-08"
@@ -56,10 +56,10 @@ variable "use_wildcard_cert" {
 
 # Security Group Variables
 
-variable "alb_inbound_cidr" {
-  type = string
+variable "inbound_cidr" {
+  type = list(string)
 }
 
-variable "alb_outbound_cidr" {
-
+variable "outbound_cidr" {
+  type = list(string)
 }

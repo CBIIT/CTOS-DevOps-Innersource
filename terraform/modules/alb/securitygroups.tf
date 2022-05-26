@@ -11,7 +11,7 @@ resource "aws_security_group_rule" "alb_inbound_https" {
   from_port         = 443
   protocol          = "tcp"
   to_port           = 443
-  cidr_blocks       = var.alb_inbound_cidr
+  cidr_blocks       = var.inbound_cidr
 }
 
 resource "aws_security_group_rule" "alb_outbound_all" {
@@ -21,5 +21,5 @@ resource "aws_security_group_rule" "alb_outbound_all" {
   from_port         = 0
   protocol          = "-1"
   to_port           = 0
-  cidr_blocks       = var.alb_outbound_cidr
+  cidr_blocks       = var.outbound_cidr
 }

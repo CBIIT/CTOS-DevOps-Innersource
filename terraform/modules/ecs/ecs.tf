@@ -5,7 +5,7 @@ resource "aws_ecs_cluster" "ecs_cluster" {
 }
 
 resource "aws_ecs_service" "ecs_service_frontend" {
-  name                               = local.ecs_frontend_service_name #var.ecs_service_name #"${var.app}-${var.tier}-frontend"
+  name                               = local.ecs_frontend_service_name
   cluster                            = aws_ecs_cluster.ecs_cluster.id
   task_definition                    = aws_ecs_task_definition.frontend.arn
   desired_count                      = var.container_replicas
@@ -14,14 +14,14 @@ resource "aws_ecs_service" "ecs_service_frontend" {
   deployment_minimum_healthy_percent = 50
   deployment_maximum_percent         = 200
   network_configuration {
-    security_groups  =  [aws_security_group.app_sg.id]   #create security groups in tf file.
+    security_groups  =  [aws_security_group.app_sg.id]
     subnets          = var.webapp_subnets
     assign_public_ip = false
   }
   load_balancer {
     target_group_arn = var.frontend_target_group_arn #module.alb.aws_lb_target_group.target_group.arn  -> get the output from ALB module
     container_name   = "frontend"
-    container_port   = local.frontend_port
+    container_port   = var.frontend_port
   }
   lifecycle {
     ignore_changes = [task_definition, desired_count]
@@ -29,7 +29,7 @@ resource "aws_ecs_service" "ecs_service_frontend" {
 }
 
 resource "aws_ecs_service" "ecs_service_backend" {
-  name                               = local.ecs_backend_service_name #"${var.stack_name}-${terraform.workspace}-backend"
+  name                               = local.ecs_backend_service_name
   cluster                            = aws_ecs_cluster.ecs_cluster.id
   task_definition                    = aws_ecs_task_definition.backend.arn
   desired_count                      = var.container_replicas
@@ -46,7 +46,7 @@ resource "aws_ecs_service" "ecs_service_backend" {
   load_balancer {
     target_group_arn = var.backend_target_group_arn # get tge value from output section of ALB aws_lb_target_group.backend_target_group.arn
     container_name   = "backend"
-    container_port   = local.backend_port
+    container_port   = var.backend_port
   }
   lifecycle {
     ignore_changes = [task_definition, desired_count]
@@ -54,7 +54,7 @@ resource "aws_ecs_service" "ecs_service_backend" {
 }
 
 resource "aws_ecs_task_definition" "frontend" {
-  family                       = local.ecs_family_frontend #var.ecs_task_definition_name #"${var.stack_name}-${var.env}-frontend"
+  family                       = local.ecs_family_frontend
   requires_compatibilities     = var.requires_compatibilities
   network_mode                 = var.network_mode
   cpu                          = var.cpu_usage
@@ -68,9 +68,9 @@ resource "aws_ecs_task_definition" "frontend" {
       essential    = true
       portMappings = [
         {
-          protocol      = local.tcp_protocol
-          containerPort = local.frontend_port
-          hostPort      = local.frontend_port
+          protocol      = "tcp"
+          containerPort = var.frontend_port
+          hostPort      = var.frontend_port
         }
       ]
     }])
@@ -78,7 +78,7 @@ resource "aws_ecs_task_definition" "frontend" {
 }
 
 resource "aws_ecs_task_definition" "backend" {
-  family                   = local.ecs_family_backend #var.ecs_task_definition_name #"${var.stack_name}-${var.env}-frontend"
+  family                   = local.ecs_family_backend
   requires_compatibilities = var.requires_compatibilities
   network_mode             = var.network_mode
   cpu                      = var.cpu_usage
@@ -92,9 +92,9 @@ resource "aws_ecs_task_definition" "backend" {
       essential    = true
       portMappings = [
         {
-          protocol      = local.tcp_protocol
-          containerPort = local.backend_port
-          hostPort      = local.backend_port
+          protocol      = "tcp"
+          containerPort = var.backend_port
+          hostPort      = var.backend_port
         }
       ]
     }])

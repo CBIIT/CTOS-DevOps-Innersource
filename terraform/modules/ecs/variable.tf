@@ -94,3 +94,15 @@ variable "db_instance" {
   type        = string
   default     = ""
 }
+
+variable "frontend_port" {
+  description = "frontend container port to use in ECS"
+  type = number
+  default = 80
+}
+
+variable "backend_port" {
+  description = "backend container port to use in ECS"
+  type = number
+  default = 8080
+}

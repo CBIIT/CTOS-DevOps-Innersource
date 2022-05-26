@@ -3,10 +3,9 @@ resource "aws_security_group" "app_sg" {
   vpc_id = var.vpc_id
   tags = merge(
   {
-    "Name" = format("%s-%s-frontend-sg", var.app, terraform.workspace),
+    "Name" = format("%s-%s-%s", var.app, "app-sg", terraform.workspace)
   },
-  var.tags,
-  )
+  var.tags)
 }
 
 resource "aws_security_group_rule" "inbound_frontend_alb_http" {

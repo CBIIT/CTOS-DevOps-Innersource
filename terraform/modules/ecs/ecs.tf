@@ -1,7 +1,11 @@
 
 resource "aws_ecs_cluster" "ecs_cluster" {
   name = local.ecs_cluster_name
-  tags = var.tags
+  tags = merge(
+  {
+    "Name" = format("%s-%s-%s", var.app, "ecs-cluster", terraform.workspace)
+  },
+  var.tags)
 }
 
 resource "aws_ecs_service" "ecs_service_frontend" {
@@ -57,8 +61,8 @@ resource "aws_ecs_task_definition" "frontend" {
   family                       = local.ecs_family_frontend
   requires_compatibilities     = var.requires_compatibilities
   network_mode                 = var.network_mode
-  cpu                          = var.cpu_usage
-  memory                       = var.memory_usage
+  cpu                          = var.frontend_cpu_usage
+  memory                       = var.frontend_memory_usage
   execution_role_arn           = aws_iam_role.task_execution_role.arn
   task_role_arn                = aws_iam_role.task_role.arn
   container_definitions        = jsonencode([
@@ -74,15 +78,19 @@ resource "aws_ecs_task_definition" "frontend" {
         }
       ]
     }])
-  tags = var.tags
+  tags = merge(
+  {
+    "Name" = format("%s-%s-%s", var.app, "task-definition-frontend", terraform.workspace)
+  },
+  var.tags)
 }
 
 resource "aws_ecs_task_definition" "backend" {
   family                   = local.ecs_family_backend
   requires_compatibilities = var.requires_compatibilities
   network_mode             = var.network_mode
-  cpu                      = var.cpu_usage
-  memory                   = var.memory_usage
+  cpu                      = var.backend_cpu_usage
+  memory                   = var.backend_memory_usage
   execution_role_arn       = aws_iam_role.task_execution_role.arn
   task_role_arn            = aws_iam_role.task_role.arn
   container_definitions    = jsonencode([
@@ -98,7 +106,11 @@ resource "aws_ecs_task_definition" "backend" {
         }
       ]
     }])
-  tags = var.tags
+  tags = merge(
+  {
+    "Name" = format("%s-%s-%s", var.app, "task-definition-backend", terraform.workspace)
+  },
+  var.tags)
 }
 
 #create ecs cluster

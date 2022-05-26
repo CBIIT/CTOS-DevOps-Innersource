@@ -54,15 +54,25 @@ variable "network_mode" {
   default     = "awsvpc"
 }
 
-variable "cpu_usage" {
+variable "frontend_cpu_usage" {
   description = "number of cpu units used by the task"
   type        = string
   default = "256"
 }
-variable "memory_usage" {
+variable "frontend_memory_usage" {
   description = "The amount (in MiB) of memory used by the task"
   type        = string
   default     = "512"
+}
+variable "backend_cpu_usage" {
+  description = "number of cpu units used by the task"
+  type        = string
+  default = "512"
+}
+variable "backend_memory_usage" {
+  description = "The amount (in MiB) of memory used by the task"
+  type        = string
+  default     = "1024"
 }
 variable "frontend_container_image_name" {
   description = "Image used in the frontend container"

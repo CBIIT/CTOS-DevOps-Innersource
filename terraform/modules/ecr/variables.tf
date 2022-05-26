@@ -9,3 +9,8 @@ variable "scan_on_push" {
   description = "Indicates whether images are scanned after being pushed to the repository (true) or not scanned (false)."
   default     = true
 }
+
+variable "prod_account_id" {
+  type = string 
+  description = "The account id for the prod account. Used by the replication configuration"
+}

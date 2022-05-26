@@ -36,3 +36,14 @@ resource "aws_ecr_lifecycle_policy" "ecr" {
     }]
   })
 }
+
+resource "aws_ecr_replication_configuration" "ecr" {
+  replication_configuration {
+    rule {
+      destination {
+        region = "us-east-1" 
+        registry_id = var.prod_account_id
+      }
+    }
+  }
+}

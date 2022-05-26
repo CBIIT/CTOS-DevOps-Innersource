@@ -38,5 +38,8 @@
 
 | Name | Description |
 |------|-------------|
+| <a name="output_alb_arn"></a> [alb\_arn](#output\_alb\_arn) | n/a |
+| <a name="output_alb_dns"></a> [alb\_dns](#output\_alb\_dns) | n/a |
+| <a name="output_alb_id"></a> [alb\_id](#output\_alb\_id) | n/a |
 | <a name="output_alb_sg_id"></a> [alb\_sg\_id](#output\_alb\_sg\_id) | n/a |
 <!-- END_TF_DOCS -->

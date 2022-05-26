@@ -1,19 +1,19 @@
 # OpenSearch with Manual Snapshots
 
-todo:
-- General README.md Description
-- variable descriptions
-- remove ability to opt-out of encryption (hard default)
-- cloudwatch logs --> sumologic
-... add description for what this module provides.
+:dart: Architected by Yizhen Chen
+
+This module expands on the generic OpenSearch module offered in this registry by supporting the manual snapshot capability. Moving data from one snapshot to another, or recovering a cluster, can be simplified with a manual snapshot procedure. Snapshots created manually are stored in an S3 bucket that consumers create within this module. In addition to the standard services provisioned in the generic OpenSearch module, this module produces an S3 bucket and the necessary roles and policies to support manual snapshot management within context of an NCI AWS environment.
+
+For more information, please see AWS' documentation on [creating index snapshots in Amazon OpenSearch Service](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-snapshots.html).
+
 
 ## Table of Contents
 
-1. [Module Configuration Insight](https://github.com/CBIIT/CTOS-DevOps-Innersource/tree/main/terraform/modules/opensearch#module-configuration-insight)
-2. [Reference Architecture](https://github.com/CBIIT/CTOS-DevOps-Innersource/tree/main/terraform/modules/opensearch#reference-architecture)
-3. [Resources](https://github.com/CBIIT/CTOS-DevOps-Innersource/tree/main/terraform/modules/opensearch#resources)
-4. [Inputs](https://github.com/CBIIT/CTOS-DevOps-Innersource/tree/main/terraform/modules/opensearch#inputs)
-5. [Outputs](https://github.com/CBIIT/CTOS-DevOps-Innersource/tree/main/terraform/modules/opensearch#outputs)
+1. [Module Configuration Insight](https://github.com/CBIIT/CTOS-DevOps-Innersource/tree/opensearch-manual-snapshot/terraform/modules/opensearch-manual-snapshot#module-configuration-insight)
+2. [Reference Architecture](https://github.com/CBIIT/CTOS-DevOps-Innersource/tree/main/terraform/modules/opensearch-manual-snapshot#reference-architecture)
+3. [Resources](https://github.com/CBIIT/CTOS-DevOps-Innersource/tree/main/terraform/modules/opensearch-manual-snapshot#resources)
+4. [Inputs](https://github.com/CBIIT/CTOS-DevOps-Innersource/tree/main/terraform/modules/opensearch-manual-snapshot#inputs)
+5. [Outputs](https://github.com/CBIIT/CTOS-DevOps-Innersource/tree/main/terraform/modules/opensearch-manual-snapshot#outputs)
 
 ## Module Configuration Insight
 
@@ -23,7 +23,7 @@ todo:
 > - For each data node within each availability zone, a VPC endpoint is generated and placed within a private subnet dedicated to database instances. 
 
 **Security Notes** :
-> - Each VPC endpoint provisioned through the module is wrapped in a security group to control network accessibility of the cluster.
+> - Each VPC endpoint provisioned through the module is wrapped in a security group to control network accessibility of the cluster. The security group allows traffic from within the VPC that the cluster is deployed into.
 > - Data stored within the cluster is encrypted at rest with the AWS OpenSearch KMS mechanism.
 > - Data in transit between the cluster nodes is encrypted in transit.
 
@@ -67,7 +67,7 @@ The reference architecture below depicts a multi-az deployment of an OpenSearch 
 | <a name="input_data_node_count"></a> [data\_node\_count](#input\_data\_node\_count) | n/a | `number` | n/a | yes |
 | <a name="input_ebs_enabled"></a> [ebs\_enabled](#input\_ebs\_enabled) | n/a | `bool` | n/a | yes |
 | <a name="input_ebs_volume_size"></a> [ebs\_volume\_size](#input\_ebs\_volume\_size) | n/a | `number` | n/a | yes |
-| <a name="input_engine_version"></a> [engine\_version](#input\_engine\_version) | n/a | `string` | n/a | yes |
+| <a name="input_engine_version"></a> [engine\_version](#input\_engine\_version) | The engine version of the OpenSearch cluster. Examples include OpenSearch\_1.0 and OpenSearch\_1.2 | `string` | n/a | yes |
 | <a name="input_iam_prefix"></a> [iam\_prefix](#input\_iam\_prefix) | n/a | `string` | `"power-user"` | no |
 | <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | n/a | `string` | n/a | yes |
 | <a name="input_jenkins_host_id"></a> [jenkins\_host\_id](#input\_jenkins\_host\_id) | n/a | `string` | n/a | yes |
@@ -77,7 +77,7 @@ The reference architecture below depicts a multi-az deployment of an OpenSearch 
 | <a name="input_multi-az"></a> [multi-az](#input\_multi-az) | n/a | `bool` | n/a | yes |
 | <a name="input_snapshot_hour"></a> [snapshot\_hour](#input\_snapshot\_hour) | The hour in which OpenSearch will perform automated snapshot operations | `number` | `23` | no |
 | <a name="input_subnet_ids"></a> [subnet\_ids](#input\_subnet\_ids) | The subnets which OpenSearch will be deployed to | `set(string)` | n/a | yes |
-| <a name="input_tier"></a> [tier](#input\_tier) | n/a | `string` | n/a | yes |
+| <a name="input_tier"></a> [tier](#input\_tier) | The target tier for the deployment. If using workspaces, provide 'terraform.workspace' as the input variable value | `string` | n/a | yes |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | n/a | `string` | n/a | yes |
 
 ## Outputs

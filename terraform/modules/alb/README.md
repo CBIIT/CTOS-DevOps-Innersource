@@ -33,7 +33,7 @@
 | <a name="input_subnets"></a> [subnets](#input\_subnets) | The subnets for which the ALBs point to. | `set(string)` | n/a | yes |
 | <a name="input_tier"></a> [tier](#input\_tier) | The target tier for the deployment. If using workspaces, provide 'terraform.workspace' as the input for this variable | `string` | n/a | yes |
 | <a name="input_type"></a> [type](#input\_type) | The type of load balancer to create. Possible values are application, gateway, or network. The default value is application | `string` | `"application"` | no |
-| <a name="input_use_wildcard_cert"></a> [use\_wildcard\_cert](#input\_use\_wildcard\_cert) | n/a | `bool` | n/a | yes |
+| <a name="input_use_wildcard_cert"></a> [use\_wildcard\_cert](#input\_use\_wildcard\_cert) | Set to true to query target account for a '*.cancer.gov' wildcard certificate to associate with the ALB | `bool` | `false` | no |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | The target VPC for which to deploy the stack into | `string` | n/a | yes |
 
 ## Outputs

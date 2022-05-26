@@ -61,3 +61,10 @@ data "aws_iam_policy_document" "logs" {
     ]
   }
 }
+
+data "aws_acm_certificate" "wildcard" {
+  domain      = "*.cancer.gov"
+  statuses    = ["ISSUED"]
+  types       = ["IMPORTED"]
+  most_recent = true
+}

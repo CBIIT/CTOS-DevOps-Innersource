@@ -1,5 +1,6 @@
 variable "app" {
-  type = string
+  type        = string
+  description = "The name of the application, often times an acronym in all lower case (i.e. 'mtp')."
 }
 
 variable "tier" {
@@ -33,24 +34,24 @@ variable "ebs_volume_size" {
 }
 
 variable "subnet_ids" {
-  type = set(string)
+  type        = set(string)
   description = "The subnets which OpenSearch will be deployed to"
 }
 
 variable "snapshot_hour" {
-  type = number
+  type        = number
   description = "The hour in which OpenSearch will perform automated snapshot operations"
-  default = 23
+  default     = 23
 }
 
 variable "log_type" {
-  type = string
+  type        = string
   description = "The type of OpenSearch logs to forward to CloudWatch. Options include 'INDEX_SLOW_LOGS, 'SEARCH_SLOW_LOGS', 'ES_APPLICATION_LOGS', and 'AUDIT_LOGS'"
-  default = "INDEX_SLOW_LOGS"
+  default     = "INDEX_SLOW_LOGS"
 }
 
 variable "log_retention" {
-  type = number
+  type        = number
   description = "The number of days to save OpenSearch logs sent to CloudWatch"
 }
 
@@ -63,11 +64,11 @@ variable "jenkins_host_id" {
 }
 
 variable "iam_prefix" {
-  type = string 
+  type    = string
   default = "power-user"
 }
 
 variable "jenkins_profile_role_name" {
-  type = string 
+  type        = string
   description = "The name of the role associated with the instance profile for the EC2 that is the Jenkins host"
 }

@@ -14,3 +14,4 @@ variable "prod_account_id" {
   type = string 
   description = "The account id for the prod account. Used by the replication configuration"
 }
+

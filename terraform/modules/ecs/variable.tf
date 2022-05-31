@@ -13,20 +13,24 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
 variable "container_replicas" {
   description = "specify the number of container to run"
   type        = number
 }
+
 variable "ecs_launch_type" {
   description = "ecs launch type - FARGATE or EC2"
   type        = string
   default     = "FARGATE"
 }
+
 variable "ecs_scheduling_strategy" {
   description = "ecs scheduling strategy"
   type        = string
   default     = "REPLICA"
 }
+
 variable "webapp_subnets" {
   description = "private subnet details"
   default     = []
@@ -48,6 +52,7 @@ variable "requires_compatibilities" {
   type        = list(string)
   default     = ["FARGATE"]
 }
+
 variable "network_mode" {
   description = "ecs network mode - bridge,host,awsvpc"
   type        = string
@@ -59,25 +64,30 @@ variable "frontend_cpu_usage" {
   type        = string
   default     = "256"
 }
+
 variable "frontend_memory_usage" {
   description = "The amount (in MiB) of memory used by the task"
   type        = string
   default     = "512"
 }
+
 variable "backend_cpu_usage" {
   description = "number of cpu units used by the task"
   type        = string
   default     = "512"
 }
+
 variable "backend_memory_usage" {
   description = "The amount (in MiB) of memory used by the task"
   type        = string
   default     = "1024"
 }
+
 variable "frontend_container_image_name" {
   description = "Image used in the frontend container"
   type        = string
 }
+
 variable "backend_container_image_name" {
   description = "Image used in the backend container"
   type        = string
@@ -94,6 +104,7 @@ variable "alb_sg_id" {
   type        = list(any)
   default     = []
 }
+
 variable "iam_prefix" {
   type    = string
   default = "power-user"
@@ -115,4 +126,3 @@ variable "backend_port" {
   description = "backend container port to use in ECS"
   type        = number
   default     = 8080
-}

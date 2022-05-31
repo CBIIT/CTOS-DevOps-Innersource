@@ -98,6 +98,7 @@ resource "aws_ecs_task_definition" "backend" {
       name      = "backend"
       image     = "${var.backend_container_image_name}:latest"
       essential = true
+      
       portMappings = [
         {
           protocol      = "tcp"
@@ -110,9 +111,9 @@ resource "aws_ecs_task_definition" "backend" {
     {
       "Name" = format("%s-%s-%s", var.app, "task-definition-backend", terraform.workspace)
     },
+
   var.tags)
 }
-
 #create ecs cluster
 resource "aws_appautoscaling_target" "frontend_target" {
   max_capacity       = 5

@@ -126,3 +126,4 @@ variable "backend_port" {
   description = "backend container port to use in ECS"
   type        = number
   default     = 8080
+}

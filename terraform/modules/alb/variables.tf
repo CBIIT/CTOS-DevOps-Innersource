@@ -22,7 +22,7 @@ variable "type" {
 }
 
 variable "internal" {
-  type = bool
+  type        = bool
   description = "Set to true for non-prod accounts that do not have egress out to the internet or public subnets."
 }
 
@@ -56,9 +56,9 @@ variable "listener_ssl_policy" {
 }
 
 variable "use_wildcard_cert" {
-  type = bool
+  type        = bool
   description = "Set to true to query target account for a '*.cancer.gov' wildcard certificate to associate with the ALB"
-  default = false
+  default     = false
 }
 
 # Security Group Variables

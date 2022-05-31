@@ -2,11 +2,6 @@ variable "app" {
   type        = string
   description = "The name of the stack or application for this deployment"
 }
-variable "region" {
-  type        = string
-  description = "AWS region"
-  default     = "us-east-1"
-}
 
 variable "tags" {
   description = "provide custom tags"
@@ -34,7 +29,7 @@ variable "ecs_scheduling_strategy" {
 variable "webapp_subnets" {
   description = "private subnet details"
   default     = []
-  type        = list(string)
+  type        = set(string)
 }
 
 variable "frontend_target_group_arn" {
@@ -49,7 +44,7 @@ variable "backend_target_group_arn" {
 
 variable "requires_compatibilities" {
   description = "Set of launch types required by the task"
-  type        = list(string)
+  type        = set(string)
   default     = ["FARGATE"]
 }
 
@@ -101,8 +96,7 @@ variable "vpc_id" {
 
 variable "alb_sg_id" {
   description = "security group ID of ALB which needs to be read from ALB module"
-  type        = list(any)
-  default     = []
+  type        = string
 }
 
 variable "iam_prefix" {

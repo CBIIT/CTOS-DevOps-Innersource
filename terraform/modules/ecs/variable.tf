@@ -10,12 +10,12 @@ variable "region" {
 
 variable "tags" {
   description = "provide custom tags"
-  type = map(string)
-  default = {}
+  type        = map(string)
+  default     = {}
 }
 variable "container_replicas" {
   description = "specify the number of container to run"
-  type = number
+  type        = number
 }
 variable "ecs_launch_type" {
   description = "ecs launch type - FARGATE or EC2"
@@ -57,7 +57,7 @@ variable "network_mode" {
 variable "frontend_cpu_usage" {
   description = "number of cpu units used by the task"
   type        = string
-  default = "256"
+  default     = "256"
 }
 variable "frontend_memory_usage" {
   description = "The amount (in MiB) of memory used by the task"
@@ -67,7 +67,7 @@ variable "frontend_memory_usage" {
 variable "backend_cpu_usage" {
   description = "number of cpu units used by the task"
   type        = string
-  default = "512"
+  default     = "512"
 }
 variable "backend_memory_usage" {
   description = "The amount (in MiB) of memory used by the task"
@@ -91,11 +91,11 @@ variable "vpc_id" {
 
 variable "alb_sg_id" {
   description = "security group ID of ALB which needs to be read from ALB module"
-  type        = list
+  type        = list(any)
   default     = []
 }
 variable "iam_prefix" {
-  type = string
+  type    = string
   default = "power-user"
 }
 
@@ -107,12 +107,12 @@ variable "db_instance" {
 
 variable "frontend_port" {
   description = "frontend container port to use in ECS"
-  type = number
-  default = 80
+  type        = number
+  default     = 80
 }
 
 variable "backend_port" {
   description = "backend container port to use in ECS"
-  type = number
-  default = 8080
+  type        = number
+  default     = 8080
 }

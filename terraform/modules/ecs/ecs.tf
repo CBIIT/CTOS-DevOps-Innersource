@@ -98,7 +98,7 @@ resource "aws_ecs_task_definition" "backend" {
       name      = "backend"
       image     = "${var.backend_container_image_name}:latest"
       essential = true
-      
+
       portMappings = [
         {
           protocol      = "tcp"

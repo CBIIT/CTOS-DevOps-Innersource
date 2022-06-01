@@ -14,13 +14,13 @@ variable "container_replicas" {
   type        = number
 }
 
-variable "ecs_launch_type" {
+variable "launch_type" {
   description = "ecs launch type - FARGATE or EC2"
   type        = string
   default     = "FARGATE"
 }
 
-variable "ecs_scheduling_strategy" {
+variable "scheduling_strategy" {
   description = "ecs scheduling strategy"
   type        = string
   default     = "REPLICA"

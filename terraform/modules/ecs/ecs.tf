@@ -13,8 +13,8 @@ resource "aws_ecs_service" "ecs_service_frontend" {
   cluster                            = aws_ecs_cluster.ecs_cluster.id
   task_definition                    = aws_ecs_task_definition.frontend.arn
   desired_count                      = var.container_replicas
-  launch_type                        = var.ecs_launch_type
-  scheduling_strategy                = var.ecs_scheduling_strategy
+  launch_type                        = var.launch_type
+  scheduling_strategy                = var.scheduling_strategy
   deployment_minimum_healthy_percent = 50
   deployment_maximum_percent         = 200
 
@@ -40,8 +40,8 @@ resource "aws_ecs_service" "ecs_service_backend" {
   cluster                            = aws_ecs_cluster.ecs_cluster.id
   task_definition                    = aws_ecs_task_definition.backend.arn
   desired_count                      = var.container_replicas
-  launch_type                        = var.ecs_launch_type
-  scheduling_strategy                = var.ecs_scheduling_strategy
+  launch_type                        = var.launch_type
+  scheduling_strategy                = var.scheduling_strategy
   deployment_minimum_healthy_percent = 50
   deployment_maximum_percent         = 200
 

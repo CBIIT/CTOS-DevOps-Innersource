@@ -12,15 +12,18 @@
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_mutability"></a> [mutability](#input\_mutability) | he tag mutability setting for the repository. Must be one of: MUTABLE or IMMUTABLE. | `string` | `"MUTABLE"` | no |
-| <a name="input_prod_account_id"></a> [prod\_account\_id](#input\_prod\_account\_id) | The account id for the prod account. Used by the replication configuration | `string` | n/a | yes |
 | <a name="input_scan_on_push"></a> [scan\_on\_push](#input\_scan\_on\_push) | Indicates whether images are scanned after being pushed to the repository (true) or not scanned (false). | `bool` | `true` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_registry_id"></a> [registry\_id](#output\_registry\_id) | n/a |
-| <a name="output_repo_arn"></a> [repo\_arn](#output\_repo\_arn) | n/a |
-| <a name="output_repo_name"></a> [repo\_name](#output\_repo\_name) | n/a |
-| <a name="output_repo_url"></a> [repo\_url](#output\_repo\_url) | n/a |
+| <a name="output_backend_registry_id"></a> [backend\_registry\_id](#output\_backend\_registry\_id) | n/a |
+| <a name="output_backend_repo_arn"></a> [backend\_repo\_arn](#output\_backend\_repo\_arn) | n/a |
+| <a name="output_backend_repo_name"></a> [backend\_repo\_name](#output\_backend\_repo\_name) | n/a |
+| <a name="output_backend_repo_url"></a> [backend\_repo\_url](#output\_backend\_repo\_url) | n/a |
+| <a name="output_frontend_registry_id"></a> [frontend\_registry\_id](#output\_frontend\_registry\_id) | n/a |
+| <a name="output_frontend_repo_arn"></a> [frontend\_repo\_arn](#output\_frontend\_repo\_arn) | n/a |
+| <a name="output_frontend_repo_name"></a> [frontend\_repo\_name](#output\_frontend\_repo\_name) | n/a |
+| <a name="output_frontend_repo_url"></a> [frontend\_repo\_url](#output\_frontend\_repo\_url) | n/a |
 <!-- END_TF_DOCS -->

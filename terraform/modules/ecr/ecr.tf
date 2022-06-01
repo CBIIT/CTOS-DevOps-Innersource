@@ -6,7 +6,7 @@ resource "aws_ecr_repository" "frontend" {
     scan_on_push = var.scan_on_push
   }
 
-  encryption_configuration {
+  encryption_configuration = {
     encryption_type = "AES256"
   }
 }
@@ -40,7 +40,7 @@ resource "aws_ecr_repository" "backend" {
     scan_on_push = var.scan_on_push
   }
 
-  encryption_configuration {
+  encryption_configuration = {
     encryption_type = "AES256"
   }
 }

@@ -27,7 +27,7 @@
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_alb_sg_id"></a> [alb\_sg\_id](#input\_alb\_sg\_id) | security group ID of ALB which needs to be read from ALB module | `list(any)` | `[]` | no |
+| <a name="input_alb_sg_id"></a> [alb\_sg\_id](#input\_alb\_sg\_id) | security group ID of ALB which needs to be read from ALB module | `string` | n/a | yes |
 | <a name="input_app"></a> [app](#input\_app) | The name of the stack or application for this deployment | `string` | n/a | yes |
 | <a name="input_backend_container_image_name"></a> [backend\_container\_image\_name](#input\_backend\_container\_image\_name) | Image used in the backend container | `string` | n/a | yes |
 | <a name="input_backend_cpu_usage"></a> [backend\_cpu\_usage](#input\_backend\_cpu\_usage) | number of cpu units used by the task | `string` | `"512"` | no |
@@ -45,11 +45,10 @@
 | <a name="input_frontend_target_group_arn"></a> [frontend\_target\_group\_arn](#input\_frontend\_target\_group\_arn) | frontend target group arn value | `string` | n/a | yes |
 | <a name="input_iam_prefix"></a> [iam\_prefix](#input\_iam\_prefix) | n/a | `string` | `"power-user"` | no |
 | <a name="input_network_mode"></a> [network\_mode](#input\_network\_mode) | ecs network mode - bridge,host,awsvpc | `string` | `"awsvpc"` | no |
-| <a name="input_region"></a> [region](#input\_region) | AWS region | `string` | `"us-east-1"` | no |
-| <a name="input_requires_compatibilities"></a> [requires\_compatibilities](#input\_requires\_compatibilities) | Set of launch types required by the task | `list(string)` | <pre>[<br>  "FARGATE"<br>]</pre> | no |
+| <a name="input_requires_compatibilities"></a> [requires\_compatibilities](#input\_requires\_compatibilities) | Set of launch types required by the task | `set(string)` | <pre>[<br>  "FARGATE"<br>]</pre> | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | provide custom tags | `map(string)` | `{}` | no |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | VPC ID the DB instance will be created in | `string` | `""` | no |
-| <a name="input_webapp_subnets"></a> [webapp\_subnets](#input\_webapp\_subnets) | private subnet details | `list(string)` | `[]` | no |
+| <a name="input_webapp_subnets"></a> [webapp\_subnets](#input\_webapp\_subnets) | private subnet details | `set(string)` | `[]` | no |
 
 ## Outputs
 

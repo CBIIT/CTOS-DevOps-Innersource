@@ -11,7 +11,7 @@ resource "aws_ecr_repository" "frontend" {
   }
 }
 
-resource "aws_ecr_lifecycle_policy" "ecr" {
+resource "aws_ecr_lifecycle_policy" "frontend_ecr_lifecycle_policy" {
   repository = aws_ecr_repository.frontend.name
 
   policy = jsonencode({
@@ -45,7 +45,7 @@ resource "aws_ecr_repository" "backend" {
   }
 }
 
-resource "aws_ecr_lifecycle_policy" "ecr" {
+resource "aws_ecr_lifecycle_policy" "backend_ecr_lifecycle_policy" {
   repository = aws_ecr_repository.backend.name
 
   policy = jsonencode({

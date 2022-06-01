@@ -29,7 +29,7 @@ data "aws_iam_policy_document" "repository" {
     }
 
     principals {
-      type = "AWS"
+      type        = "AWS"
       identifiers = ["arn:aws:iam::${var.prod_account_id}:root"]
     }
 

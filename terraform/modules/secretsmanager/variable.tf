@@ -1,6 +1,6 @@
 variable "secrets" {
   description = "Map of secrets to keep in AWS Secrets Manager"
-  type        = map(object)
+  type        = map(string)
   default     = {}
 }
 

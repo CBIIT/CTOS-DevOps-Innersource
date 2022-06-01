@@ -11,9 +11,13 @@
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_app"></a> [app](#input\_app) | The name of the stack or application for this deployment | `string` | n/a | yes |
-| <a name="input_secrets"></a> [secrets](#input\_secrets) | Map of secrets to keep in AWS Secrets Manager | `map(object)` | `{}` | no |
+| <a name="input_secrets"></a> [secrets](#input\_secrets) | Map of secrets to keep in AWS Secrets Manager | `map(string)` | `{}` | no |
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_secret_manager_arn"></a> [secret\_manager\_arn](#output\_secret\_manager\_arn) | n/a |
+| <a name="output_secret_manager_id"></a> [secret\_manager\_id](#output\_secret\_manager\_id) | n/a |
+| <a name="output_secret_manager_version_id"></a> [secret\_manager\_version\_id](#output\_secret\_manager\_version\_id) | n/a |
 <!-- END_TF_DOCS -->

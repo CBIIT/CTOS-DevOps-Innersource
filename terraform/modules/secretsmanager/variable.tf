@@ -1,7 +1,7 @@
 variable "secrets" {
   description = "Map of secrets to keep in AWS Secrets Manager"
-  type = map(object)
-  default = {}
+  type        = map(string)
+  default     = {}
 }
 
 variable "app" {

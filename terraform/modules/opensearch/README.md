@@ -1,47 +1,3 @@
-# OpenSearch with Manual Snapshots
-
-todo:
-- General README.md Description
-- variable descriptions
-- remove ability to opt-out of encryption (hard default)
-- cloudwatch logs --> sumologic
-... add description for what this module provides.
-
-## Table of Contents
-
-1. [Module Configuration Insight](https://github.com/CBIIT/CTOS-DevOps-Innersource/tree/main/terraform/modules/opensearch#module-configuration-insight)
-2. [Reference Architecture](https://github.com/CBIIT/CTOS-DevOps-Innersource/tree/main/terraform/modules/opensearch#reference-architecture)
-3. [Resources](https://github.com/CBIIT/CTOS-DevOps-Innersource/tree/main/terraform/modules/opensearch#resources)
-4. [Inputs](https://github.com/CBIIT/CTOS-DevOps-Innersource/tree/main/terraform/modules/opensearch#inputs)
-5. [Outputs](https://github.com/CBIIT/CTOS-DevOps-Innersource/tree/main/terraform/modules/opensearch#outputs)
-
-## Module Configuration Insight
-
-**Network Notes** : 
-> - Cluster is deployed with VPC support for an extra layer of security.
-> - Can be deployed into a single or multiple availability zones (2 zones), depending on configuration variables passed to the module.
-> - For each data node within each availability zone, a VPC endpoint is generated and placed within a private subnet dedicated to database instances. 
-
-**Security Notes** :
-> - Each VPC endpoint provisioned through the module is wrapped in a security group to control network accessibility of the cluster.
-> - Data stored within the cluster is encrypted at rest with the AWS OpenSearch KMS mechanism.
-> - Data in transit between the cluster nodes is encrypted in transit.
-
-**Storage Notes** :
-> - It is recommended that an OpenSearch instance type that supports Elastic Block Storage (EBS) instance storage (avoid r6gd, r3, and i3 instance types).
-> - Sizing for storage is uniform across all data nodes. Please see AWS' documentation around best practices for [sizing domains](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/sizing-domains.html).
-> - The module does not allow consumers to configure master nodes due to the number of available availability zones within the NCI network topology (requires 3 or more availability zones).
-
-**Snapshot Notes** :
-> - By default, AWS captures a daily snapshot of managed OpenSearch clusters deployed within a VPC. Consider setting the hour in which the snapshot occurs.
-> - Consumers can elect to manually manage snapshots. Manual snapshots are imported or exported on demand, and leverage a S3 bucket deployed in the account (which this module provisions on your behalf).
-> - Manual snapshot configurations do not negate the daily automated snapshot activity.
-
-## Reference Architecture
-The reference architecture below depicts a multi-az deployment of an OpenSearch cluster that is using an EBS-enabled instance type. The cluster is configured with two data nodes per instance, which equates to a total of four data nodes and four VPC endpoints across the region. Lastly, this reference architecture reflects a configuration that enables manual snapshot activity. Snapshots are stored in AWS S3, and are managed by executables on the Jenkins host instance.
-
-![Opensearch Boundary](./assets/diagram.png)
-
 <!-- BEGIN_TF_DOCS -->
 ## Resources
 
@@ -49,13 +5,7 @@ The reference architecture below depicts a multi-az deployment of an OpenSearch 
 |------|------|
 | [aws_cloudwatch_log_group.opensearch](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group) | resource |
 | [aws_cloudwatch_log_resource_policy.opensearch](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_resource_policy) | resource |
-| [aws_iam_policy.jenkins_snapshot](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
-| [aws_iam_policy.os_snapshot](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
-| [aws_iam_role.os_snapshot](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
-| [aws_iam_role_policy_attachment.jenkins_snapshot](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
-| [aws_iam_role_policy_attachment.os_snapshot](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
-| [aws_opensearch_domain.os](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/opensearch_domain) | resource |
-| [aws_s3_bucket.opensearch_snapshot](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket) | resource |
+| [aws_opensearch_domain.opensearch](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/opensearch_domain) | resource |
 | [aws_security_group.opensearch](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
 | [aws_security_group_rule.opensearch_inbound_https](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
 
@@ -70,7 +20,6 @@ The reference architecture below depicts a multi-az deployment of an OpenSearch 
 | <a name="input_engine_version"></a> [engine\_version](#input\_engine\_version) | n/a | `string` | n/a | yes |
 | <a name="input_iam_prefix"></a> [iam\_prefix](#input\_iam\_prefix) | n/a | `string` | `"power-user"` | no |
 | <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | n/a | `string` | n/a | yes |
-| <a name="input_jenkins_host_id"></a> [jenkins\_host\_id](#input\_jenkins\_host\_id) | n/a | `string` | n/a | yes |
 | <a name="input_log_retention"></a> [log\_retention](#input\_log\_retention) | The number of days to save OpenSearch logs sent to CloudWatch | `number` | n/a | yes |
 | <a name="input_log_type"></a> [log\_type](#input\_log\_type) | The type of OpenSearch logs to forward to CloudWatch. Options include 'INDEX\_SLOW\_LOGS, 'SEARCH\_SLOW\_LOGS', 'ES\_APPLICATION\_LOGS', and 'AUDIT\_LOGS' | `string` | `"INDEX_SLOW_LOGS"` | no |
 | <a name="input_multi-az"></a> [multi-az](#input\_multi-az) | n/a | `bool` | n/a | yes |
@@ -83,5 +32,8 @@ The reference architecture below depicts a multi-az deployment of an OpenSearch 
 
 | Name | Description |
 |------|-------------|
-| <a name="output_jenkins_host"></a> [jenkins\_host](#output\_jenkins\_host) | n/a |
+| <a name="output_opensearch_arn"></a> [opensearch\_arn](#output\_opensearch\_arn) | n/a |
+| <a name="output_opensearch_domain_id"></a> [opensearch\_domain\_id](#output\_opensearch\_domain\_id) | n/a |
+| <a name="output_opensearch_domain_name"></a> [opensearch\_domain\_name](#output\_opensearch\_domain\_name) | n/a |
+| <a name="output_opensearch_endpoint"></a> [opensearch\_endpoint](#output\_opensearch\_endpoint) | n/a |
 <!-- END_TF_DOCS -->

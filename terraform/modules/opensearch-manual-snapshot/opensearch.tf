@@ -1,4 +1,4 @@
-resource "aws_opensearch_domain" "opensearch" {
+resource "aws_opensearch_domain" "os" {
   domain_name    = local.domain
   engine_version = var.engine_version
 

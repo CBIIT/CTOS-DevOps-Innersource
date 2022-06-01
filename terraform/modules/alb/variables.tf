@@ -4,26 +4,26 @@ variable "app" {
   description = "The name of the stack or application for this deployment"
 }
 
-variable "vpc_id" {
-  type        = string
-  description = "The target VPC for which to deploy the stack into"
-}
-
 variable "tier" {
   type        = string
   description = "The target tier for the deployment. If using workspaces, provide 'terraform.workspace' as the input for this variable"
 }
 
-# ALB Variables
-variable "internal" {
-  type        = bool
-  description = "Sets the ALB to be internal if access to the internet is not available"
+variable "vpc_id" {
+  type        = string
+  description = "The target VPC for which to deploy the stack into"
 }
 
+# ALB Variables
 variable "type" {
   type        = string
   description = "The type of load balancer to create. Possible values are application, gateway, or network. The default value is application"
   default     = "application"
+}
+
+variable "internal" {
+  type        = bool
+  description = "Set to true for non-prod accounts that do not have egress out to the internet or public subnets."
 }
 
 variable "drop_invalid_header" {
@@ -49,18 +49,24 @@ variable "create_timeout" {
   default     = "10 minutes"
 }
 
-variable "alb_listener_ssl_policy" {
+variable "listener_ssl_policy" {
   type        = string
   description = "Name of the SSL Policy for the associated listener, which is required if the protocol is TLS or HTTPS"
   default     = "ELBSecurityPolicy-2016-08"
 }
 
-# Security Group Variables
-
-variable "alb_inbound_cidr" {
-  type = string
+variable "use_wildcard_cert" {
+  type        = bool
+  description = "Set to true to query target account for a '*.cancer.gov' wildcard certificate to associate with the ALB"
+  default     = false
 }
 
-variable "alb_outbound_cidr" {
+# Security Group Variables
 
+variable "inbound_cidr" {
+  type = list(string)
+}
+
+variable "outbound_cidr" {
+  type = list(string)
 }

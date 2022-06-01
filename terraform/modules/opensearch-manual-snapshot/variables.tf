@@ -1,13 +1,16 @@
 variable "app" {
-  type = string
+  type        = string
+  description = "The name of the application, often times an acronym in all lower case (i.e. 'mtp')."
 }
 
 variable "tier" {
-  type = string
+  type        = string
+  description = "The target tier for the deployment. If using workspaces, provide 'terraform.workspace' as the input variable value"
 }
 
 variable "engine_version" {
-  type = string
+  type        = string
+  description = "The engine version of the OpenSearch cluster. Examples include OpenSearch_1.0 and OpenSearch_1.2"
 }
 
 variable "instance_type" {
@@ -56,7 +59,16 @@ variable "vpc_id" {
   type = string
 }
 
+variable "jenkins_host_id" {
+  type = string
+}
+
 variable "iam_prefix" {
   type    = string
   default = "power-user"
+}
+
+variable "jenkins_profile_role_name" {
+  type        = string
+  description = "The name of the role associated with the instance profile for the EC2 that is the Jenkins host"
 }

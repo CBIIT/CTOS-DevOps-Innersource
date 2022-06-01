@@ -10,3 +10,7 @@ variable "scan_on_push" {
   default     = true
 }
 
+variable "app" {
+  type        = string
+  description = "The name of the stack or application for this deployment"
+}

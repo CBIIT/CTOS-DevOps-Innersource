@@ -1,13 +1,15 @@
 # we need to move the project specific policy creation outside of module.
 
 resource "aws_iam_role" "task_execution_role" {
-  name               = local.task_execution_role_name
-  assume_role_policy = data.aws_iam_policy_document.task_execution_policy.json
+  name                 = local.task_execution_role_name
+  assume_role_policy   = data.aws_iam_policy_document.task_execution_policy.json
+  permissions_boundary = local.permission_boundary_arn
 }
 
 resource "aws_iam_role" "task_role" {
-  name               = local.task_role_name
-  assume_role_policy = data.aws_iam_policy_document.task_execution_policy.json
+  name                 = local.task_role_name
+  assume_role_policy   = data.aws_iam_policy_document.task_execution_policy.json
+  permissions_boundary = local.permission_boundary_arn
 }
 
 resource "aws_iam_role_policy_attachment" "task_execution_role_policy_attachment" {

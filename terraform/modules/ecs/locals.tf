@@ -9,4 +9,5 @@ locals {
   task_execution_role_name  = "${var.iam_prefix}-${var.app}-ecs-task-exection-role-${terraform.workspace}"
   task_role_name            = "${var.iam_prefix}-${var.app}-ecs-task-role-${terraform.workspace}"
   ecs_log_policy            = "${var.iam_prefix}-${var.app}-ecs-log-policy-${terraform.workspace}"
+  permission_boundary_arn   = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:policy/PermissionBoundary_PowerUser"
 }

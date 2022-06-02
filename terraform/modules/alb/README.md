@@ -23,7 +23,7 @@
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_app"></a> [app](#input\_app) | The name of the stack or application for this deployment | `string` | n/a | yes |
-| <a name="input_create_timeout"></a> [create\_timeout](#input\_create\_timeout) | The time allowed for timeout when creating the ALB resource. | `string` | `"10 minutes"` | no |
+| <a name="input_create_timeout"></a> [create\_timeout](#input\_create\_timeout) | The time allowed for timeout when creating the ALB resource. | `string` | `"10m"` | no |
 | <a name="input_drop_invalid_header"></a> [drop\_invalid\_header](#input\_drop\_invalid\_header) | Indicates whether HTTP headers with header fields that are not valid are removed by the load balancer (true) or routed to targets (false). The default is false. Elastic Load Balancing requires that message header names contain only alphanumeric characters and hyphens. Only valid for Load Balancers of type application. | `bool` | `true` | no |
 | <a name="input_enable_deletion_protection"></a> [enable\_deletion\_protection](#input\_enable\_deletion\_protection) | If true, deletion of the load balancer will be disabled via the AWS API. This will prevent Terraform from deleting the load balancer. Defaults to false. | `bool` | `true` | no |
 | <a name="input_inbound_cidr"></a> [inbound\_cidr](#input\_inbound\_cidr) | n/a | `list(string)` | n/a | yes |

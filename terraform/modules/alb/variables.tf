@@ -46,7 +46,7 @@ variable "subnets" {
 variable "create_timeout" {
   type        = string
   description = "The time allowed for timeout when creating the ALB resource."
-  default     = "10 minutes"
+  default     = "10m"
 }
 
 variable "listener_ssl_policy" {

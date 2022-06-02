@@ -5,10 +5,6 @@ resource "aws_ecr_repository" "frontend" {
   image_scanning_configuration {
     scan_on_push = var.scan_on_push
   }
-
-  encryption_configuration = {
-    encryption_type = "AES256"
-  }
 }
 
 resource "aws_ecr_lifecycle_policy" "frontend_ecr_lifecycle_policy" {
@@ -38,10 +34,6 @@ resource "aws_ecr_repository" "backend" {
 
   image_scanning_configuration {
     scan_on_push = var.scan_on_push
-  }
-
-  encryption_configuration = {
-    encryption_type = "AES256"
   }
 }
 

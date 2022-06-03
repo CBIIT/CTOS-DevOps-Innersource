@@ -18,6 +18,7 @@ jobs:
         working-dir: ./terraform
         output-file: README.md
         output-method: inject 
+        args: --tfvars hcl
         recursive: true
         git-push: true
         config-file: ../.github/config/terraform-docs.yml

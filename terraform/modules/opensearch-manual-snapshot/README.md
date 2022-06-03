@@ -90,4 +90,15 @@ The reference architecture below depicts a multi-az deployment of an OpenSearch 
 | Name | Description |
 |------|-------------|
 | <a name="output_jenkins_host"></a> [jenkins\_host](#output\_jenkins\_host) | n/a |
+| <a name="output_opensearch_domain_id"></a> [opensearch\_domain\_id](#output\_opensearch\_domain\_id) | n/a |
+| <a name="output_opensearch_domain_name"></a> [opensearch\_domain\_name](#output\_opensearch\_domain\_name) | n/a |
+| <a name="output_opensearch_endpoint"></a> [opensearch\_endpoint](#output\_opensearch\_endpoint) | n/a |
+| <a name="output_opensearch_engine_version"></a> [opensearch\_engine\_version](#output\_opensearch\_engine\_version) | n/a |
+| <a name="output_opensearch_iam_role_arn"></a> [opensearch\_iam\_role\_arn](#output\_opensearch\_iam\_role\_arn) | n/a |
+| <a name="output_opensearch_iam_role_name"></a> [opensearch\_iam\_role\_name](#output\_opensearch\_iam\_role\_name) | n/a |
+| <a name="output_opensearch_kibana_endpoint"></a> [opensearch\_kibana\_endpoint](#output\_opensearch\_kibana\_endpoint) | n/a |
+| <a name="output_opensearch_securitygroup_arn"></a> [opensearch\_securitygroup\_arn](#output\_opensearch\_securitygroup\_arn) | n/a |
+| <a name="output_opensearch_securitygroup_name"></a> [opensearch\_securitygroup\_name](#output\_opensearch\_securitygroup\_name) | n/a |
+| <a name="output_s3_snapshot_bucket_arn"></a> [s3\_snapshot\_bucket\_arn](#output\_s3\_snapshot\_bucket\_arn) | n/a |
+| <a name="output_s3_snapshot_bucket_name"></a> [s3\_snapshot\_bucket\_name](#output\_s3\_snapshot\_bucket\_name) | n/a |
 <!-- END_TF_DOCS -->

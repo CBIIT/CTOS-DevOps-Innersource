@@ -1,6 +1,17 @@
 # CTOS-DevOps-Innersource
 
-placeholder 
+To-do:
+
+- what is the innersource?
+- what's available in the innersource (documentation, examples)?
+- for tf, what do we avoid putting in modules?
+- what are our naming conventions?
+- when do we use variables? locals? data sources?
+- how do we control change? 
+- how do we safely allow others to contribute?
+- how do we use tags?
+- how can users easily create tfvars files?
+
 
 ## Module Variable Naming Conventions
 

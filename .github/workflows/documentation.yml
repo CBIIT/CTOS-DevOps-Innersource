@@ -18,7 +18,7 @@ jobs:
         working-dir: ./terraform
         output-file: README.md
         output-method: inject 
-        args: --tfvars hcl ./terraform/modules/
+        args: --tfvars hcl ./terraform/modules/opensearch-manual-snapshot
         recursive: true
         git-push: true
         config-file: ../.github/config/terraform-docs.yml

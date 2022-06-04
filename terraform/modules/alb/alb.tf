@@ -39,6 +39,7 @@ resource "aws_lb_listener" "https" {
   port              = 443
   protocol          = "HTTPS"
   ssl_policy        = var.listener_ssl_policy
+  certificate_arn   = var.certificate_arn
 
   default_action {
     type = "fixed-response"

@@ -55,12 +55,6 @@ variable "listener_ssl_policy" {
   default     = "ELBSecurityPolicy-2016-08"
 }
 
-variable "use_wildcard_cert" {
-  type        = bool
-  description = "Set to true to query target account for a '*.cancer.gov' wildcard certificate to associate with the ALB"
-  default     = false
-}
-
 # Security Group Variables
 
 variable "inbound_cidr" {
@@ -69,4 +63,9 @@ variable "inbound_cidr" {
 
 variable "outbound_cidr" {
   type = list(string)
+}
+
+variable "certificate_arn" {
+  type = string 
+  description = "The ARN for the certificate to attach to the HTTPS listener for the ALB. When available, use a wildcard certificate"
 }

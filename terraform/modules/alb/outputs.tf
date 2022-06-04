@@ -34,10 +34,6 @@ output "listener_https_arn" {
   value = aws_lb_listener.https.arn
 }
 
-output "wildcard_cert_domain" {
-  value = data.aws_acm_certificate.wildcard.domain
-}
-
 output "s3_logs_arn" {
   value = aws_s3_bucket.logs.arn
 }

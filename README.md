@@ -2,6 +2,14 @@
 
 To-do:
 
+- updating variable descriptions
+- updating output descriptions
+- updating security group descriptions
+- updating iam role and policy descriptions
+- creating reference architectures
+- updating module documentation
+- creating examples
+
 - what is the innersource?
 - what's available in the innersource (documentation, examples)?
 - for tf, what do we avoid putting in modules?

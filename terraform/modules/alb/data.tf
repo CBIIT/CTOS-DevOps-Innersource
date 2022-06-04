@@ -7,7 +7,7 @@ data "aws_iam_policy_document" "logs" {
     principals {
       type = "AWS"
       identifiers = [
-        "arn:aws:iam::${data.aws_caller_identity.account.account_id}:root"
+        "arn:aws:iam::127311923021:root"
       ]
     }
 

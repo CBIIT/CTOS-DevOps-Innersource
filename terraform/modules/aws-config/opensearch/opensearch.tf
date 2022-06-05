@@ -2,6 +2,11 @@
 ### opensearch-access-control-enabled
 ### opensearch-data-node-fault-tolerance
 
+# Notes:
+### name the resources based on the source identifier, only chaning the text case
+### name the rule the same as the resource name, except replace underscores with hyphens
+### add a description which reflects what AWS offers for the rule description. add the rule trigger type to the end of the description
+
 
 resource "aws_config_config_rule" "opensearch_audit_logging_enabled" {
   name = "opensearch-audit-logging-enabled"
@@ -62,5 +67,3 @@ resource "aws_config_config_rule" "opensearch_node_to_node_encryption_check" {
     source_identifier = "OPENSEARCH_NODE_TO_NODE_ENCRYPTION_CHECK"
   }
 }
-
-

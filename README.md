@@ -1,10 +1,5 @@
 # CTOS-DevOps-Innersource
 
-Module Development To-Do:
-- config rules for opensearch
-- config rules for alb
-- config rules for s3
-- config rules for ecs
 
 Module Governance To-Do:
 - updating variable descriptions

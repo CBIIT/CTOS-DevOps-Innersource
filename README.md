@@ -37,6 +37,29 @@ InnerSource To-Do:
 
 Maybe we should say that the "Name" tag is handled in the module, the rest are handled in the consuming project (default/alt tags?)
 
+Can use default tags in main aws provider, and add a second provider with additional default tags since the terraform aws provider only allows a max of 10 each. 
+
+<pre><code>provider "aws" {
+  region = "us-east-1"
+  default_tags {
+    tags = {
+      app = "CCDC"
+      dev_lead = "Wei Yu"
+    }
+  }
+}
+
+provider "aws" {
+  alias = "alt-tags"
+  region = "us-east-1
+  default_tags {
+    tags = {
+      program = "CCDI"
+      managed_by = "terraform"
+    }
+  }
+}</code></pre>
+
 - Name
   - human-readable resource name. note that the AWS Console UI displays the case-sensitive "Name" tag.
 - app

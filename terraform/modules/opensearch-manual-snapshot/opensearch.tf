@@ -22,6 +22,11 @@ resource "aws_opensearch_domain" "os" {
     automated_snapshot_start_hour = var.snapshot_hour
   }
 
+  domain_endpoint_options {
+    enforce_https       = true
+    tls_security_policy = "Policy-Min-TLS-1-2-2019-07"
+  }
+
   encrypt_at_rest {
     enabled = true
   }

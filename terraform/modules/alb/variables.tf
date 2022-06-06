@@ -66,6 +66,6 @@ variable "outbound_cidr" {
 }
 
 variable "certificate_arn" {
-  type = string 
+  type        = string
   description = "The ARN for the certificate to attach to the HTTPS listener for the ALB. When available, use a wildcard certificate"
 }

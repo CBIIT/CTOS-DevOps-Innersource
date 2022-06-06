@@ -18,16 +18,11 @@
 | [aws_iam_role_policy_attachment.task_execution_role_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
 | [aws_iam_role_policy_attachment.task_log_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
 | [aws_security_group.app_sg](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
-| [aws_security_group_rule.additional_outbound_frontend](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
-| [aws_security_group_rule.all_outbound_frontend](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
-| [aws_security_group_rule.inbound_backend_alb](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
-| [aws_security_group_rule.inbound_frontend_alb_http](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_alb_sg_id"></a> [alb\_sg\_id](#input\_alb\_sg\_id) | security group ID of ALB which needs to be read from ALB module | `string` | n/a | yes |
 | <a name="input_app"></a> [app](#input\_app) | The name of the stack or application for this deployment | `string` | n/a | yes |
 | <a name="input_backend_container_image_name"></a> [backend\_container\_image\_name](#input\_backend\_container\_image\_name) | Image used in the backend container | `string` | n/a | yes |
 | <a name="input_backend_cpu_usage"></a> [backend\_cpu\_usage](#input\_backend\_cpu\_usage) | number of cpu units used by the task | `string` | `"512"` | no |
@@ -35,7 +30,6 @@
 | <a name="input_backend_port"></a> [backend\_port](#input\_backend\_port) | backend container port to use in ECS | `number` | `8080` | no |
 | <a name="input_backend_target_group_arn"></a> [backend\_target\_group\_arn](#input\_backend\_target\_group\_arn) | backend target group arn value | `string` | n/a | yes |
 | <a name="input_container_replicas"></a> [container\_replicas](#input\_container\_replicas) | specify the number of container to run | `number` | n/a | yes |
-| <a name="input_db_instance"></a> [db\_instance](#input\_db\_instance) | DB instance for ECS backend container to access the clickhouse house database. | `string` | `""` | no |
 | <a name="input_frontend_container_image_name"></a> [frontend\_container\_image\_name](#input\_frontend\_container\_image\_name) | Image used in the frontend container | `string` | n/a | yes |
 | <a name="input_frontend_cpu_usage"></a> [frontend\_cpu\_usage](#input\_frontend\_cpu\_usage) | number of cpu units used by the task | `string` | `"256"` | no |
 | <a name="input_frontend_memory_usage"></a> [frontend\_memory\_usage](#input\_frontend\_memory\_usage) | The amount (in MiB) of memory used by the task | `string` | `"512"` | no |
@@ -54,5 +48,6 @@
 
 | Name | Description |
 |------|-------------|
+| <a name="output_ecs_securitygroup_id"></a> [ecs\_securitygroup\_id](#output\_ecs\_securitygroup\_id) | n/a |
 | <a name="output_task_role_name"></a> [task\_role\_name](#output\_task\_role\_name) | n/a |
 <!-- END_TF_DOCS -->

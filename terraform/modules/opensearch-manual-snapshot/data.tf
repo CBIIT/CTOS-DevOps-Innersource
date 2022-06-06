@@ -34,10 +34,4 @@ data "aws_iam_policy_document" "os_snapshot" {
   }
 }
 
-data "aws_iam_policy_document" "jenkins_snapshot" {
-  statement {
-    actions   = ["iam:PassRole"]
-    effect    = "Allow"
-    resources = [aws_iam_role.os_snapshot.arn]
-  }
-}
+

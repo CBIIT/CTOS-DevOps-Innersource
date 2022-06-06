@@ -1,7 +1,3 @@
-output "jenkins_host" {
-  value = data.aws_instance.jenkins_host.iam_instance_profile
-}
-
 output "opensearch_domain_id" {
   value = aws_opensearch_domain.os.domain_id
 }

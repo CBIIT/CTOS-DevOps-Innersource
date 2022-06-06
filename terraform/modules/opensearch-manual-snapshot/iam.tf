@@ -15,10 +15,7 @@ resource "aws_iam_role_policy_attachment" "os_snapshot" {
 }
 
 # To allow Jenkins Host to assume the snapshot role defined above.
-resource "aws_iam_policy" "jenkins_snapshot" {
-  name   = local.jenkins_snapshot
-  policy = data.aws_iam_policy_document.jenkins_snapshot.json
-}
+
 
 resource "aws_iam_role_policy_attachment" "jenkins_snapshot" {
   role       = var.jenkins_profile_role_name

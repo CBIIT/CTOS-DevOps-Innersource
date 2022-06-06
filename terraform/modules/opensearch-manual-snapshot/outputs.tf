@@ -10,12 +10,12 @@ output "opensearch_endpoint" {
   value = aws_opensearch_domain.os.endpoint
 }
 
-output "opensearch_kibana_endpoint" {
-  value = aws_opensearch_domain.os.kibana_endpoint
-}
-
 output "opensearch_engine_version" {
   value = aws_opensearch_domain.os.engine_version
+}
+
+output "opensearch_kibana_endpoint" {
+  value = aws_opensearch_domain.os.kibana_endpoint
 }
 
 output "s3_snapshot_bucket_name" {
@@ -23,7 +23,7 @@ output "s3_snapshot_bucket_name" {
 }
 
 output "s3_snapshot_bucket_arn" {
- value = aws_s3_bucket.opensearch_snapshot.arn 
+  value = aws_s3_bucket.opensearch_snapshot.arn
 }
 
 output "opensearch_securitygroup_arn" {

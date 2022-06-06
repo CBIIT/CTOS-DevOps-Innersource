@@ -94,20 +94,9 @@ variable "vpc_id" {
   description = "VPC ID the DB instance will be created in"
 }
 
-variable "alb_sg_id" {
-  description = "security group ID of ALB which needs to be read from ALB module"
-  type        = string
-}
-
 variable "iam_prefix" {
   type    = string
   default = "power-user"
-}
-
-variable "db_instance" {
-  description = "DB instance for ECS backend container to access the clickhouse house database."
-  type        = string
-  default     = ""
 }
 
 variable "frontend_port" {

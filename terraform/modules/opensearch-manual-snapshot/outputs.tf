@@ -18,14 +18,6 @@ output "opensearch_engine_version" {
   value = aws_opensearch_domain.os.engine_version
 }
 
-output "opensearch_iam_role_arn" {
-  value = aws_iam_role.os_snapshot.arn
-}
-
-output "opensearch_iam_role_name" {
-  value = aws_iam_role.os_snapshot.name
-}
-
 output "s3_snapshot_bucket_name" {
   value = aws_s3_bucket.opensearch_snapshot.bucket
 }

@@ -34,6 +34,9 @@ InnerSource To-Do:
 - - For example, The OpenSearch resource offered by the AWS provider has an argument called "zone_awareness_enabled". Don't name a variable for this argument "opensearch_zone_awareness_enabled". Instead, use the argument name as it is, or give it a more descriptive name like "multi_az_enabled".
 
 ## Tags (notes):
+
+Maybe we should say that the "Name" tag is handled in the module, the rest are handled in the consuming project (default/alt tags?)
+
 - Name
   - human-readable resource name. note that the AWS Console UI displays the case-sensitive "Name" tag.
 - app

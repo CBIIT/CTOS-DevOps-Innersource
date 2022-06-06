@@ -17,6 +17,10 @@ variable "instance_type" {
   type = string
 }
 
+variable "iam_prefix" {
+  type = string
+}
+
 variable "data_node_count" {
   type = number
 }

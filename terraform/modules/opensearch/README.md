@@ -35,4 +35,5 @@
 | <a name="output_opensearch_domain_id"></a> [opensearch\_domain\_id](#output\_opensearch\_domain\_id) | n/a |
 | <a name="output_opensearch_domain_name"></a> [opensearch\_domain\_name](#output\_opensearch\_domain\_name) | n/a |
 | <a name="output_opensearch_endpoint"></a> [opensearch\_endpoint](#output\_opensearch\_endpoint) | n/a |
+| <a name="output_opensearch_securitygroup_id"></a> [opensearch\_securitygroup\_id](#output\_opensearch\_securitygroup\_id) | n/a |
 <!-- END_TF_DOCS -->

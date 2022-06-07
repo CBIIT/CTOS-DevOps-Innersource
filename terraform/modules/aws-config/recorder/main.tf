@@ -15,7 +15,7 @@ data "aws_iam_policy_document" "recorder" {
     effect = "Allow"
     sid = "AwsConfigRecorder"
     principals {
-      type = "AWS"
+      type = "Service"
       identifiers = [ "config.amazonaws.com" ]
     }
   }

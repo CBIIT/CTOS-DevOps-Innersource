@@ -55,15 +55,6 @@ variable "listener_ssl_policy" {
   default     = "ELBSecurityPolicy-2016-08"
 }
 
-# Security Group Variables
-
-variable "inbound_cidr" {
-  type = list(string)
-}
-
-variable "outbound_cidr" {
-  type = list(string)
-}
 
 variable "certificate_arn" {
   type        = string

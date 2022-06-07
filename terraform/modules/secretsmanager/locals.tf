@@ -1,3 +1,4 @@
 locals {
-  secret_manager_name = "${var.app}-credentials-${terraform.workspace}"
+  secret_manager_name = "${var.app}-credentials-${var.tier}"
+
 }

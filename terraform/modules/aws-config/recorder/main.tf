@@ -4,7 +4,7 @@ resource "aws_config_configuration_recorder" "recorder" {
 }
 
 resource "aws_iam_role" "recorder" {
-  name = "config-recorder-role"
+  name = "power-user-config-recorder-role"
   assume_role_policy = data.aws_iam_policy_document.recorder.json
 }
 

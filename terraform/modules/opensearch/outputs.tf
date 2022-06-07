@@ -13,3 +13,7 @@ output "opensearch_domain_name" {
 output "opensearch_endpoint" {
   value = aws_opensearch_domain.opensearch.endpoint
 }
+
+output "opensearch_securitygroup_id" {
+  value = aws_security_group.opensearch.id
+}

@@ -1,0 +1,90 @@
+---
+- name: create task definition for {{ project_name }}-{{ container_name }}
+  community.aws.ecs_taskdefinition:
+    containers:
+      - name: sumologic-firelens
+        essential: true
+        image: "public.ecr.aws/aws-observability/aws-for-fluent-bit:stable"
+        firelensConfiguration:
+          type: fluentbit
+          options:
+            enable-ecs-log-metadata: "true"
+      - name: "{{ container_name }}"
+        essential: true
+        image: "{{ container_image_url }}:{{ image_version }}"
+        environment: "{{ container_env }}"
+        entryPoint: "{% if container_entrypoint is defined %}{{ container_entrypoint }}{% else %}[]{% endif %}"
+        portMappings:
+          - containerPort: "{{ container_port }}"
+            hostPort: "{{ container_port }}"
+        logConfiguration:
+          logDriver: awsfirelens
+          options:
+            Name: "http"
+            Host: "{{ sumo_collector_endpoint }}"
+            URI: "/receiver/v1/http/{{ sumo_collector_token }}"
+            Port: "443"
+            tls: "on"
+            tls.verify: "off"
+            Format: "json_lines"
+            Retry_Limit: "2"
+    launch_type: FARGATE
+    network_mode: awsvpc
+    execution_role_arn: "arn:aws:iam::{{ account }}:role/{{ execution_role }}" #{{ iam_prefix }}-{{ project_name }}-ecs-task-execution-role-{{ tier }}"
+    task_role_arn: "arn:aws:iam::{{ account }}:role/{{ task_role }}" #{{ iam_prefix }}-{{ project_name }}-ecs-task-role-{{ tier }}"
+    family: "{{ project_name }}-{{ container_name }}-{{ tier }}"
+    memory: "{{ container_memory }}"
+    cpu: "{{ container_cpu }}"
+    state: present
+    force_create: true
+    region: "{{ region }}"
+  register: task_output
+
+############################################################################################################################
+#     Task Definition Queries
+############################################################################################################################
+- name: query task definition - {{ container_name }}
+  ecs_taskdefinition_info:
+    task_definition: "{{ project_name }}-{{ container_name }}-{{ tier }}"
+    region: "{{ region }}"
+  register: task
+
+############################################################################################################################
+#     Service Queries
+############################################################################################################################
+- name: query {{ container_name }} service
+  ecs_service_info:
+    cluster: "{{ ecs_cluster_name }}"
+    service: "{{ project_name }}-{{ container_name }}-{{ tier }}"
+    details: true
+    region: "{{ region }}"
+  register: service
+
+- name: set facts
+  set_fact:
+    task_revision: "{{ task.revision }}"
+    task_name: "{{ task.family }}"
+    lb: "{{ service.services[0].loadBalancers }}"
+    role_arn: "{{ service.services[0].roleArn }}"
+
+###########################################################################################################################
+#Update Services
+############################################################################################################################
+- name: update {{ container_name }} service
+  ecs_service:
+    state: present
+    name: "{{ project_name }}-{{ container_name }}-{{ tier }}"
+    cluster: "{{ ecs_cluster_name }}"
+    task_definition: "{{ task_name }}:{{ task_revision }}"
+    role: "{{ role_arn }}"
+    force_new_deployment: yes
+    deployment_configuration:
+      minimum_healthy_percent: 50
+      maximum_percent: 200
+      deployment_circuit_breaker:
+        enable: true
+        rollback: false
+    desired_count: 1
+    load_balancers: "{{ lb }}"
+    region: "{{ region }}"
+  register: output

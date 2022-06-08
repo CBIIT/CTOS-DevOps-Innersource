@@ -10,6 +10,6 @@ variable "app" {
 }
 
 variable "tier" {
-  type = string 
+  type        = string
   description = "The target tier that the secret(s) will be deployed into"
 }

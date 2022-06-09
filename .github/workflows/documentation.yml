@@ -3,8 +3,43 @@ on:
   - pull_request 
 
 jobs:
+  
+  format:
+    name: 'TF Format'
+    runs-on: ubuntu-latest
+    steps:
+    - name: Repository Checkout
+      id: checkout
+      uses: actions/checkout@v3
+      with:
+        ref: ${{ github.event.pull_request.head.ref }}
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+    - name: Terraform Format
+      run: terraform fmt -recursive
+
+  lint:
+    name: 'TF Lint'
+    needs: format
+    runs-on: ubuntu-latest
+    steps:
+    - name: Repository Checkout
+      id: checkout
+      uses: actions/checkout@v3
+      with:
+        ref: ${{ github.event.pull_request.head.ref }}
+    - name: Setup
+      uses: terraform-linters/setup-tflint@v2
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Initialize
+      run: tflint --init
+    - name: Execute
+      run: tflint -f compact
+  
   documentation:
     name: 'Create Module Documentation'
+    needs: lint
     runs-on: ubuntu-latest
     steps:
     - name: Repository Checkout
@@ -21,25 +56,3 @@ jobs:
         recursive: true
         git-push: true
         config-file: ../.github/config/terraform-docs.yml
-
-        name: Terraform Compliance Checks
-
-  checkov:
-    name: 'Check Module Compliance'
-    runs-on: ubuntu-latest
-    steps:
-    - name: Repository Checkout
-      id: checkout
-      uses: actions/checkout@master
-    - name: Run Checkov action
-      id: checkov
-      uses: bridgecrewio/checkov-action@master
-      with:
-        directory: terraform/
-        quiet: true
-        soft_fail: true
-        framework: terraform
-        output_format: sarif
-        download_external_modules: true
-        log_level: WARNING # optional: set log level. Default WARNING
-        container_user: 1000 # optional: Define what UID and / or what GID to run the container under to prevent permission issues

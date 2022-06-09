@@ -15,18 +15,23 @@ variable "engine_version" {
 
 variable "instance_type" {
   type = string
+  description = "Specify the instance type for the OpenSearch cluster. For example, t3.medium.search"
 }
 
 variable "iam_prefix" {
   type = string
+  description = "The string used to prefix the IAM role or policy name according to NCI power user governance"
+  default = "power-user"
 }
 
 variable "data_node_count" {
   type = number
+  description = "Specify the number of OpenSearch data nodes per instance within the cluster"
 }
 
 variable "multi-az" {
   type = bool
+  description = "Set this value to true in order to provision a multi-availability zone cluster distribution"
 }
 
 variable "ebs_enabled" {

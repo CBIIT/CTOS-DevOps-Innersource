@@ -1,0 +1,20 @@
+# vars file for ecs deployment
+#ansible_python_interpreter:
+#project_name:
+#platform:
+#region:
+#container_name:
+#image_version:
+#tier:
+#container_port:
+#container_memory:
+#container_cpu:
+#container_image_url:
+#ecs_cluster_name:
+#container_entrypoint:
+#container_env:
+#sumo_collector_endpoint:
+#sumo_collector_token:
+#account:
+#execution_role:
+#task_role

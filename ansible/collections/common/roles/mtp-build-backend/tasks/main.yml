@@ -1,0 +1,96 @@
+############################################################################################################################
+#     Backend Build
+############################################################################################################################
+
+- name: build the app
+  command: sbt dist
+  args:
+    chdir: "{{workspace}}/{{ project_name }}-backend"
+
+- name: extract build artifacts
+  unarchive:
+    src: "{{workspace}}/{{ project_name }}-backend/target/universal/{{artifact_dir_name}}.zip"
+    dest: "{{workspace}}"
+
+- name: listing the contents of the workspace {{workspace}} after extracting
+  shell: ls
+  register: shell_result
+  args:
+    chdir: "{{workspace}}"
+
+- debug:
+        var: shell_result.stdout_lines
+
+- name: rename {{artifact_dir_name}} to app
+  command: mv "{{workspace}}/{{artifact_dir_name}}" "{{workspace}}/app"
+
+- name: copy config files
+  command: cp "{{workspace}}/{{ project_name }}-backend/production.conf" "{{workspace}}/{{ project_name }}-backend/production.xml" "{{workspace}}/app/conf"
+
+- name: copy application.conf file to {{workspace}}/app/conf/
+  template:
+    src: "{{workspace}}/{{ project_name }}-backend/conf/application.conf.j2"
+    dest: "{{workspace}}/app/conf/application.conf"
+
+- name: delete bat script
+  command: rm -rf *.bat
+  args:
+    chdir: "{{workspace}}/app/bin"
+
+- name: listing the contents
+  shell: ls
+  register: shell_result
+  args:
+    chdir: "{{workspace}}/app/bin"
+    
+- debug:
+        var: shell_result.stdout_lines
+
+- name: rename "{{artifact_name}}" script
+  command: mv  "{{artifact_name}}" start
+  args:
+    chdir: "{{workspace}}/app/bin"
+
+- name: build {{ project_name }}-{{ container_name }} image
+  community.docker.docker_image:
+    build:
+      args:
+        ECR_REPO: "{{ container_registry_url }}"
+      path: "{{ workspace }}"
+      dockerfile: "{{ dockerfile_path }}"
+      pull: yes
+      nocache: yes
+    name: "{{ project_name }}-{{ container_name }}"
+    tag: "{{ image_version }}-{{ build_number }}"
+    push: no
+    force_source: yes
+    source: build
+
+- name: test image for vulnerabilities
+  block:
+    - name: run trivy scanner on 
+      command: "trivy image --severity HIGH,CRITICAL {{ project_name }}-{{ container_name }}:{{ image_version }}-{{ build_number }}"
+      register: vuln_results
+  always:
+    - name: echo vulnerability results
+      debug:
+        msg: "{{ vuln_results.stdout_lines }}"
+
+- name: Add {{ project_name }}-{{ container_name }} image to ECR
+  docker_image:
+    name: "{{ project_name }}-{{ container_name }}"
+    repository: "{{ container_registry_url }}/{{ project_name }}-{{ container_name }}"
+    tag: "{{ image_version }}-{{ build_number }}"
+    force_tag: yes
+    push: yes
+    source: local
+
+- name: Add tag latest to {{ project_name }}-{{container_name}} image
+  community.docker.docker_image:
+    name: "{{ container_registry_url }}/{{ project_name }}-{{ container_name }}:{{ image_version }}-{{build_number}}"
+    repository: "{{ container_registry_url }}/{{ project_name }}-{{ container_name }}:latest"
+    force_tag: yes
+    push: yes
+    source: local
+
+

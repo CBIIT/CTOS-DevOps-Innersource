@@ -36,10 +36,12 @@ variable "multi-az" {
 
 variable "ebs_enabled" {
   type = bool
+  description = "Set to true to enable elastic block storage for your OpenSearch data nodes"
 }
 
 variable "ebs_volume_size" {
   type = number
+  description = "Specify the ebs volume size for each data node (in GiB)"
 }
 
 variable "subnet_ids" {
@@ -66,4 +68,5 @@ variable "log_retention" {
 
 variable "vpc_id" {
   type = string
+  description = "The ID of the target VPC for the OpenSearch cluster"
 }

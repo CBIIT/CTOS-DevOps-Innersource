@@ -22,7 +22,7 @@ jobs:
   
   documentation:
     name: 'Create Module Documentation'
-    needs: scan
+    needs: format
     runs-on: ubuntu-latest
     steps:
     - name: Repository Checkout

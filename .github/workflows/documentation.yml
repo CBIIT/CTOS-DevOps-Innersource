@@ -1,4 +1,4 @@
-name: Terraform Module Documentation
+name: Terraform
 on:
   - pull_request 
 
@@ -19,31 +19,6 @@ jobs:
       run: cd terraform/modules
     - name: Terraform Format
       run: terraform fmt -recursive
-
-  scan:
-    name: Tenable Terrascan
-    needs: format
-    runs-on: ubuntu-latest
-    steps:
-    - name: Repository Checkout
-      id: checkout
-      uses: actions/checkout@v3
-      with:
-        ref: ${{ github.event.pull_request.head.ref }}
-    - name: Terrascan
-      uses: tenable/terrascan-action@main
-      with:
-        iac_dir: 'terraform/modules'
-        iac_type: 'terraform'
-        iac_version: 'v14'
-        policy_type: 'aws'
-        only_warn: true
-        sarif_upload: true
-        verbose: true
-    - name: Results 
-      uses: github/codeql-action/upload-sarif@v1
-      with:
-        sarif_file: terrascan.sarif
   
   documentation:
     name: 'Create Module Documentation'

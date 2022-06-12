@@ -43,53 +43,24 @@ Can use default tags in main aws provider, and add a second provider with additi
   region = "us-east-1"
   default_tags {
     tags = {
-      app = "CCDC"
-      dev_lead = "Wei Yu"
-    }
-  }
-}
-
-provider "aws" {
-  alias = "alt-tags"
-  region = "us-east-1
-  default_tags {
-    tags = {
-      program = "CCDI"
-      managed_by = "terraform"
+      app             = "CCDC"
+      customer        = "ODS"
+      dev_lead        = "Wei Yu"
+      fisma           = "Moderate"
+      managed_by      = "Terraform"
+      ops_model       = "Partner"
+      pii             = "True"
+      program         = "CCDI"
+      project_manager = "Mark Cunningham"
     }
   }
 }</code></pre>
 
-- Name
-  - human-readable resource name. note that the AWS Console UI displays the case-sensitive "Name" tag.
-- app
-  - name of the app using the resource
-- app-role?
-  - the resources technical function (webserver, database, etc.)
-- app-purpose
-  - the resource's business function or purpose (front-end ui, payment processor, etc.)
-- environment
-  - the tier
-- ops-model
-  - CBIIT-managed, Partner-managed
-- managed-by
-  - terraform
+
 - program
   - crdc, ccdi, etc.
-- customer
-  - ODS
-- cost-center
-  - who's paying the bill?
-- automation-exclude?
-  - true/false value for automation not to modify the resource?
 - pii
   - true/false
-- phi 
-  - true/false
-- fisma-risk-category
-  - low/moderate
-- dev-lead
-  - lead developer for the project
 - project-manager
   - name of the pm managing the project
 

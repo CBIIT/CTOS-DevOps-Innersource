@@ -18,7 +18,7 @@
 
 | Name | Description |
 |------|-------------|
-| <a name="output_secret_manager_arn"></a> [secret\_manager\_arn](#output\_secret\_manager\_arn) | n/a |
-| <a name="output_secret_manager_id"></a> [secret\_manager\_id](#output\_secret\_manager\_id) | n/a |
-| <a name="output_secret_manager_version_id"></a> [secret\_manager\_version\_id](#output\_secret\_manager\_version\_id) | n/a |
+| <a name="output_secret_manager_arn"></a> [secret\_manager\_arn](#output\_secret\_manager\_arn) | The arn of the AWS Secrets Manager secret |
+| <a name="output_secret_manager_id"></a> [secret\_manager\_id](#output\_secret\_manager\_id) | The ID of the AWS Secrets Manager secret |
+| <a name="output_secret_manager_version_id"></a> [secret\_manager\_version\_id](#output\_secret\_manager\_version\_id) | The ID of the AWS Secrets Manager secret version |
 <!-- END_TF_DOCS -->

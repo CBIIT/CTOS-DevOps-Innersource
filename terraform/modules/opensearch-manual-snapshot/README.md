@@ -81,14 +81,14 @@ The reference architecture below depicts a multi-az deployment of an OpenSearch 
 
 | Name | Description |
 |------|-------------|
-| <a name="output_opensearch_domain_id"></a> [opensearch\_domain\_id](#output\_opensearch\_domain\_id) | n/a |
-| <a name="output_opensearch_domain_name"></a> [opensearch\_domain\_name](#output\_opensearch\_domain\_name) | n/a |
-| <a name="output_opensearch_endpoint"></a> [opensearch\_endpoint](#output\_opensearch\_endpoint) | n/a |
-| <a name="output_opensearch_engine_version"></a> [opensearch\_engine\_version](#output\_opensearch\_engine\_version) | n/a |
-| <a name="output_opensearch_kibana_endpoint"></a> [opensearch\_kibana\_endpoint](#output\_opensearch\_kibana\_endpoint) | n/a |
+| <a name="output_opensearch_domain_id"></a> [opensearch\_domain\_id](#output\_opensearch\_domain\_id) | The ID of the OpenSearch domain |
+| <a name="output_opensearch_domain_name"></a> [opensearch\_domain\_name](#output\_opensearch\_domain\_name) | The domain name of the OpenSearch domain |
+| <a name="output_opensearch_endpoint"></a> [opensearch\_endpoint](#output\_opensearch\_endpoint) | The OpenSearch domain endpoint URL |
+| <a name="output_opensearch_engine_version"></a> [opensearch\_engine\_version](#output\_opensearch\_engine\_version) | The engine version of the OpenSearch domain (i.e. OpenSearch\_1.2) |
+| <a name="output_opensearch_kibana_endpoint"></a> [opensearch\_kibana\_endpoint](#output\_opensearch\_kibana\_endpoint) | The OpenSearch domain dashboard endpoint URL |
 | <a name="output_opensearch_securitygroup_arn"></a> [opensearch\_securitygroup\_arn](#output\_opensearch\_securitygroup\_arn) | n/a |
 | <a name="output_opensearch_securitygroup_id"></a> [opensearch\_securitygroup\_id](#output\_opensearch\_securitygroup\_id) | n/a |
 | <a name="output_opensearch_securitygroup_name"></a> [opensearch\_securitygroup\_name](#output\_opensearch\_securitygroup\_name) | n/a |
-| <a name="output_s3_snapshot_bucket_arn"></a> [s3\_snapshot\_bucket\_arn](#output\_s3\_snapshot\_bucket\_arn) | n/a |
-| <a name="output_s3_snapshot_bucket_name"></a> [s3\_snapshot\_bucket\_name](#output\_s3\_snapshot\_bucket\_name) | n/a |
+| <a name="output_s3_snapshot_bucket_arn"></a> [s3\_snapshot\_bucket\_arn](#output\_s3\_snapshot\_bucket\_arn) | The arn of the bucket that stores the OpenSearch domain manual snapshots |
+| <a name="output_s3_snapshot_bucket_name"></a> [s3\_snapshot\_bucket\_name](#output\_s3\_snapshot\_bucket\_name) | The name of the bucket that stores the OpenSearch domain manual snapshots |
 <!-- END_TF_DOCS -->

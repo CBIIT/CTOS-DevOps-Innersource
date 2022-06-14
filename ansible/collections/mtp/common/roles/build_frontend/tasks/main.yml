@@ -3,9 +3,9 @@
 
 - name: copy  nginx conf
   copy:
-    remote_src: yes
     src: 'nginx-ppdc.conf'
     dest: '{{workspace}}/{{ project_name }}-frontend/nginx.conf'
+    mode: 0755
 
 - name: copy entrypoint.sh to workspace
   copy:

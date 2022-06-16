@@ -60,26 +60,26 @@
       dockerfile: "{{ dockerfile_path }}"
       pull: yes
       nocache: yes
-    name: "{{ project_name }}-{{ container_name }}"
+    name: "{{ project_name }}-{{ container_name }}-{{ tier }}"
     tag: "{{ image_version }}-{{ build_number }}"
     push: no
     force_source: yes
     source: build
 
-# - name: test image for vulnerabilities
-#   block:
-#     - name: run trivy scanner on 
-#       command: "trivy image --severity HIGH,CRITICAL {{ project_name }}-{{ container_name }}:{{ image_version }}-{{ build_number }}"
-#       register: vuln_results
-#   always:
-#     - name: echo vulnerability results
-#       debug:
-#         msg: "{{ vuln_results.stdout_lines }}"
+- name: test image for vulnerabilities
+  block:
+    - name: run trivy scanner on 
+      command: "trivy image --severity HIGH,CRITICAL {{ project_name }}-{{ container_name }}-{{ tier }}:{{ image_version }}-{{ build_number }}"
+      register: vuln_results
+  always:
+    - name: echo vulnerability results
+      debug:
+        msg: "{{ vuln_results.stdout_lines }}"
 
 - name: Add {{ project_name }}-{{ container_name }} image to ECR
   docker_image:
-    name: "{{ project_name }}-{{ container_name }}"
-    repository: "{{ container_registry_url }}/{{ project_name }}-{{ container_name }}"
+    name: "{{ project_name }}-{{ container_name }}-{{ tier }}"
+    repository: "{{ container_registry_url }}/{{ project_name }}-{{ container_name }}-{{ tier }}"
     tag: "{{ image_version }}-{{ build_number }}"
     force_tag: yes
     push: yes
@@ -88,7 +88,7 @@
 - name: Add tag latest to {{ project_name }}-{{container_name}} image
   community.docker.docker_image:
     name: "{{ container_registry_url }}/{{ project_name }}-{{ container_name }}:{{ image_version }}-{{build_number}}"
-    repository: "{{ container_registry_url }}/{{ project_name }}-{{ container_name }}:latest"
+    repository: "{{ container_registry_url }}/{{ project_name }}-{{ container_name }}-{{ tier }}:latest"
     force_tag: yes
     push: yes
     source: local

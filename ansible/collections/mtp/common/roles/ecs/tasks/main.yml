@@ -55,7 +55,7 @@
 - name: query {{ container_name }} service
   ecs_service_info:
     cluster: "{{ ecs_cluster_name }}"
-    service: "{{ project_name }}-{{ container_name }}-{{ tier }}"
+    service: "{{ project_name }}-ecs-service-{{ container_name }}-{{ tier }}"
     details: true
     region: "{{ region }}"
   register: service
@@ -73,7 +73,7 @@
 - name: update {{ container_name }} service
   ecs_service:
     state: present
-    name: "{{ project_name }}-{{ container_name }}-{{ tier }}"
+    name: "{{ project_name }}-ecs-service-{{ container_name }}-{{ tier }}"
     cluster: "{{ ecs_cluster_name }}"
     task_definition: "{{ task_name }}:{{ task_revision }}"
     role: "{{ role_arn }}"

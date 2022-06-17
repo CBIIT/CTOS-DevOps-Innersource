@@ -2,20 +2,20 @@
 - name: create task definition for {{ project_name }}-{{ container_name }}
   community.aws.ecs_taskdefinition:
     containers:
-      - name: sumologic-firelens
-        essential: true
-        image: "public.ecr.aws/aws-observability/aws-for-fluent-bit:stable"
-        firelensConfiguration:
-          type: fluentbit
-          options:
-            enable-ecs-log-metadata: "true"
-        logConfiguration:
-         logDriver: awslogs
-         options:
-           awslogs-group: "/ecs/{{ project_name }}/{{ tier }}-{{ container_name }}/sumologic/logs"
-           awslogs-region: "{{ region }}"
-           awslogs-create-group: "true"
-           awslogs-stream-prefix: "{{ project_name }}-{{ container_name }}"
+      # - name: sumologic-firelens
+      #   essential: true
+      #   image: "public.ecr.aws/aws-observability/aws-for-fluent-bit:stable"
+      #   firelensConfiguration:
+      #     type: fluentbit
+      #     options:
+      #       enable-ecs-log-metadata: "true"
+      #   logConfiguration:
+      #    logDriver: awslogs
+      #    options:
+      #      awslogs-group: "/ecs/{{ project_name }}/{{ tier }}-{{ container_name }}/sumologic/logs"
+      #      awslogs-region: "{{ region }}"
+      #      awslogs-create-group: "true"
+      #      awslogs-stream-prefix: "{{ project_name }}-{{ container_name }}"
       - name: "{{ container_name }}"
         essential: true
         image: "{{ container_image_url }}:{{ image_version }}"

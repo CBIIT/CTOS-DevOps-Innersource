@@ -24,17 +24,24 @@
         portMappings:
           - containerPort: "{{ container_port }}"
             hostPort: "{{ container_port }}"
+        # logConfiguration:
+        #   logDriver: awsfirelens
+        #   options:
+        #     Name: "http"
+        #     Host: "{{ sumo_collector_endpoint }}"
+        #     URI: "/receiver/v1/http/{{ sumo_collector_token }}"
+        #     Port: "443"
+        #     tls: "on"
+        #     tls.verify: "off"
+        #     Format: "json_lines"
+        #     Retry_Limit: "2"
         logConfiguration:
-          logDriver: awsfirelens
-          options:
-            Name: "http"
-            Host: "{{ sumo_collector_endpoint }}"
-            URI: "/receiver/v1/http/{{ sumo_collector_token }}"
-            Port: "443"
-            tls: "on"
-            tls.verify: "off"
-            Format: "json_lines"
-            Retry_Limit: "2"
+         logDriver: awslogs
+         options:
+           awslogs-group: "/ecs/{{ project_name }}/{{ tier }}-{{ container_name }}/{{ container_name }}/logs"
+           awslogs-region: "{{ region }}"
+           awslogs-create-group: "true"
+           awslogs-stream-prefix: "{{ project_name }}-{{ container_name }}"
     launch_type: FARGATE
     network_mode: awsvpc
     execution_role_arn: "arn:aws:iam::{{ account }}:role/{{ execution_role }}" #{{ iam_prefix }}-{{ project_name }}-ecs-task-execution-role-{{ tier }}"

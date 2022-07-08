@@ -81,6 +81,7 @@ The reference architecture below depicts a multi-az deployment of an OpenSearch 
 
 | Name | Description |
 |------|-------------|
+| <a name="output_opensearch_domain_arn"></a> [opensearch\_domain\_arn](#output\_opensearch\_domain\_arn) | The arn of the OpenSearch domain |
 | <a name="output_opensearch_domain_id"></a> [opensearch\_domain\_id](#output\_opensearch\_domain\_id) | The ID of the OpenSearch domain |
 | <a name="output_opensearch_domain_name"></a> [opensearch\_domain\_name](#output\_opensearch\_domain\_name) | The domain name of the OpenSearch domain |
 | <a name="output_opensearch_endpoint"></a> [opensearch\_endpoint](#output\_opensearch\_endpoint) | The OpenSearch domain endpoint URL |

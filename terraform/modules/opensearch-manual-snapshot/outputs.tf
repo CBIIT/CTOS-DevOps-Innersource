@@ -3,6 +3,11 @@ output "opensearch_domain_id" {
   description = "The ID of the OpenSearch domain"
 }
 
+output "opensearch_domain_arn" {
+  value = aws_opensearch_domain.os.arn 
+  description = "The arn of the OpenSearch domain"
+}
+
 output "opensearch_domain_name" {
   value       = aws_opensearch_domain.os.domain_name
   description = "The domain name of the OpenSearch domain"

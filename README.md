@@ -1,5 +1,5 @@
 # CTOS-DevOps-Innersource
-
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/b9b51766ffbc4befb0b2414abebd3d1d)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=CBIIT/ctos-cloud-devops&amp;utm_campaign=Badge_Grade)
 
 Module Governance To-Do:
 - updating variable descriptions

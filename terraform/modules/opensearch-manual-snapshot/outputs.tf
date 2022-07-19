@@ -33,6 +33,11 @@ output "s3_snapshot_bucket_name" {
   description = "The name of the bucket that stores the OpenSearch domain manual snapshots"
 }
 
+output "s3_snapshot_bucket_id" {
+  value = aws_s3_bucket.opensearch_snapshot.id
+  description = "The ID of the snapshot S3 bucket"
+}
+
 output "s3_snapshot_bucket_arn" {
   value       = aws_s3_bucket.opensearch_snapshot.arn
   description = "The arn of the bucket that stores the OpenSearch domain manual snapshots"

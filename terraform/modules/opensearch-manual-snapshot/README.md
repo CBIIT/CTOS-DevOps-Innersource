@@ -64,6 +64,9 @@ The reference architecture below depicts a multi-az deployment of an OpenSearch 
 |------|-------------|------|---------|:--------:|
 | <a name="input_app"></a> [app](#input\_app) | The name of the application, often times an acronym in all lower case (i.e. 'mtp'). | `string` | n/a | yes |
 | <a name="input_data_node_count"></a> [data\_node\_count](#input\_data\_node\_count) | Specify the number of OpenSearch data nodes per instance within the cluster | `number` | n/a | yes |
+| <a name="input_dedicated_master_count"></a> [dedicated\_master\_count](#input\_dedicated\_master\_count) | The number of dedicated master nodes | `number` | `3` | no |
+| <a name="input_dedicated_master_enabled"></a> [dedicated\_master\_enabled](#input\_dedicated\_master\_enabled) | Set to true to enable dedicated master nodes | `bool` | `false` | no |
+| <a name="input_dedicated_master_type"></a> [dedicated\_master\_type](#input\_dedicated\_master\_type) | The instance type that hosts the dedicated master nodes | `string` | `"m6g.large.search"` | no |
 | <a name="input_ebs_enabled"></a> [ebs\_enabled](#input\_ebs\_enabled) | Set to true to enable elastic block storage for your OpenSearch data nodes | `bool` | n/a | yes |
 | <a name="input_ebs_volume_size"></a> [ebs\_volume\_size](#input\_ebs\_volume\_size) | Specify the ebs volume size for each data node (in GiB) | `number` | n/a | yes |
 | <a name="input_engine_version"></a> [engine\_version](#input\_engine\_version) | The engine version of the OpenSearch cluster. Examples include OpenSearch\_1.0 and OpenSearch\_1.2 | `string` | n/a | yes |
@@ -91,5 +94,6 @@ The reference architecture below depicts a multi-az deployment of an OpenSearch 
 | <a name="output_opensearch_securitygroup_id"></a> [opensearch\_securitygroup\_id](#output\_opensearch\_securitygroup\_id) | n/a |
 | <a name="output_opensearch_securitygroup_name"></a> [opensearch\_securitygroup\_name](#output\_opensearch\_securitygroup\_name) | n/a |
 | <a name="output_s3_snapshot_bucket_arn"></a> [s3\_snapshot\_bucket\_arn](#output\_s3\_snapshot\_bucket\_arn) | The arn of the bucket that stores the OpenSearch domain manual snapshots |
+| <a name="output_s3_snapshot_bucket_id"></a> [s3\_snapshot\_bucket\_id](#output\_s3\_snapshot\_bucket\_id) | The ID of the snapshot S3 bucket |
 | <a name="output_s3_snapshot_bucket_name"></a> [s3\_snapshot\_bucket\_name](#output\_s3\_snapshot\_bucket\_name) | The name of the bucket that stores the OpenSearch domain manual snapshots |
 <!-- END_TF_DOCS -->

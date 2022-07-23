@@ -4,7 +4,7 @@ output "opensearch_domain_id" {
 }
 
 output "opensearch_domain_arn" {
-  value = aws_opensearch_domain.os.arn 
+  value       = aws_opensearch_domain.os.arn
   description = "The arn of the OpenSearch domain"
 }
 
@@ -34,7 +34,7 @@ output "s3_snapshot_bucket_name" {
 }
 
 output "s3_snapshot_bucket_id" {
-  value = aws_s3_bucket.opensearch_snapshot.id
+  value       = aws_s3_bucket.opensearch_snapshot.id
   description = "The ID of the snapshot S3 bucket"
 }
 

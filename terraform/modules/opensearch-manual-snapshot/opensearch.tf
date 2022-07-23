@@ -6,6 +6,10 @@ resource "aws_opensearch_domain" "os" {
     instance_type          = var.instance_type
     instance_count         = var.data_node_count
     zone_awareness_enabled = var.multi-az
+
+    dedicated_master_enabled = var.dedicated_master_enabled
+    dedicated_master_count   = var.dedicated_master_count
+    dedicated_master_type    = var.dedicated_master_type
   }
 
   ebs_options {

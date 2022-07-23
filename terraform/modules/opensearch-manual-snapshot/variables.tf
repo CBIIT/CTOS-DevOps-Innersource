@@ -14,33 +14,33 @@ variable "engine_version" {
 }
 
 variable "instance_type" {
-  type = string
+  type        = string
   description = "Specify the instance type for the OpenSearch cluster. For example, t3.medium.search"
 }
 
 variable "iam_prefix" {
-  type = string
+  type        = string
   description = "The string used to prefix the IAM role or policy name according to NCI power user governance"
-  default = "power-user"
+  default     = "power-user"
 }
 
 variable "data_node_count" {
-  type = number
+  type        = number
   description = "Specify the number of OpenSearch data nodes per instance within the cluster"
 }
 
 variable "multi-az" {
-  type = bool
+  type        = bool
   description = "Set this value to true in order to provision a multi-availability zone cluster distribution"
 }
 
 variable "ebs_enabled" {
-  type = bool
+  type        = bool
   description = "Set to true to enable elastic block storage for your OpenSearch data nodes"
 }
 
 variable "ebs_volume_size" {
-  type = number
+  type        = number
   description = "Specify the ebs volume size for each data node (in GiB)"
 }
 
@@ -67,6 +67,24 @@ variable "log_retention" {
 }
 
 variable "vpc_id" {
-  type = string
+  type        = string
   description = "The ID of the target VPC for the OpenSearch cluster"
+}
+
+variable "dedicated_master_enabled" {
+  type        = bool
+  description = "Set to true to enable dedicated master nodes"
+  default     = false
+}
+
+variable "dedicated_master_count" {
+  type        = number
+  description = "The number of dedicated master nodes"
+  default     = 3
+}
+
+variable "dedicated_master_type" {
+  type        = string
+  description = "The instance type that hosts the dedicated master nodes"
+  default     = "m6g.large.search"
 }

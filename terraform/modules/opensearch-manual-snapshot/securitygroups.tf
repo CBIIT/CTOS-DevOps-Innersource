@@ -1,6 +1,6 @@
 resource "aws_security_group" "os" {
   name        = local.sg
-  description = "OpenSearch SG for ${aws_opensearch_domain.os.domain_name}"
+  description = "OpenSearch SG for ${local.domain}"
   vpc_id      = var.vpc_id
 }
 

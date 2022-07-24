@@ -32,3 +32,7 @@ data "aws_iam_policy_document" "os" {
     resources = ["${aws_opensearch_domain.os.arn}/*"]
   }
 }
+
+data "aws_vpc" "vpc" {
+  id = var.vpc_id
+}

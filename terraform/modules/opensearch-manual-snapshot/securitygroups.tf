@@ -4,74 +4,40 @@ resource "aws_security_group" "os" {
   vpc_id      = var.vpc_id
 }
 
-resource "aws_security_group_rule" "inbound_alb" {
-  count = var.enable_inbound_alb == true ? 1 : 0
-
-  security_group_id        = aws_security_group.os.id
-  description              = "Allow traffic originating from the ALB"
-  type                     = "ingress"
-  from_port                = 443
-  protocol                 = "tcp"
-  to_port                  = 443
-  source_security_group_id = var.alb_sg_id
-
-  lifecycle {
-    create_before_destroy = true
-  }
-}
-
-resource "aws_security_group_rule" "inbound_app" {
-  count = var.enable_inbound_app == true ? 1 : 0
-
-  security_group_id        = aws_security_group.os.id
-  description              = "Allow traffic originating from the application compute resources"
-  type                     = "ingress"
-  from_port                = 443
-  protocol                 = "tcp"
-  to_port                  = 443
-  source_security_group_id = var.app_sg_id
-
-  lifecycle {
-    create_before_destroy = true
-  }
+resource "aws_security_group_rule" "inbound_vpc" {
+  security_group_id = aws_security_group.os.id
+  description       = "Allow traffic from within the target VPC"
+  type              = "ingress"
+  from_port         = 443
+  protocol          = "tcp"
+  to_port           = 443
+  cidr_blocks       = [data.aws_vpc.vpc.cidr_block]
 }
 
 resource "aws_security_group_rule" "inbound_jenkins" {
-  count = var.enable_inbound_jenkins == true ? 1 : 0
-
   security_group_id        = aws_security_group.os.id
   description              = "Allow traffic originating from the jenkins instance"
   type                     = "ingress"
   from_port                = 443
   protocol                 = "tcp"
   to_port                  = 443
-  source_security_group_id = var.app_sg_id
+  source_security_group_id = var.jenkins_security_group_id
 
   lifecycle {
     create_before_destroy = true
   }
 }
 
-resource "aws_security_group_rule" "inbound_nih_network" {
-  count = var.enable_inbound_nih_network == true ? 1 : 0
-
+resource "aws_security_group_rule" "self" {
   security_group_id = aws_security_group.os.id
-  description       = "Allow traffic originating from the NIH network"
+  description       = "Allow traffic between nodes within the cluster"
   type              = "ingress"
-  from_port         = 443
-  protocol          = "tcp"
-  to_port           = 443
-  cidr_blocks       = nih_cidr_blocks
-}
-
-resource "aws_security_group_rule" "outbound" {
-  security_group_id = aws_security_group.os.id
-  description       = "OpenSearch Outbound"
-  type              = "egress"
   from_port         = 0
   protocol          = "-1"
   to_port           = 0
-  cidr_blocks       = [local.open]
+  self              = true
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
-
-

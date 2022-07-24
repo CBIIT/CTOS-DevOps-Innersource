@@ -10,9 +10,9 @@ resource "aws_opensearch_domain" "os" {
     instance_count = var.hot_node_count
     instance_type  = var.hot_node_type
 
-    warm_enabled = var.warm_instance_enabled
-    warm_count   = var.warm_instance_enabled ? var.warm_instance_count : null
-    warm_type    = var.warm_instance_enabled ? var.warm_instance_type : null
+    warm_enabled = var.warm_node_enabled
+    warm_count   = var.warm_node_enabled ? var.warm_node_count : null
+    warm_type    = var.warm_node_enabled ? var.warm_node_type : null
 
     cold_storage_options {
       enabled = false
@@ -21,7 +21,7 @@ resource "aws_opensearch_domain" "os" {
     zone_awareness_enabled = var.multi_az
 
     zone_awareness_config {
-      availability_zone_count = var.multi_az == true ? 2 : null
+      availability_zone_count = var.availability_zone_count
     }
   }
 

@@ -9,11 +9,11 @@ For more information, please see AWS' documentation on [creating index snapshots
 
 ## Table of Contents
 
-1. [Module Configuration Insight](https://github.com/CBIIT/CTOS-DevOps-Innersource/tree/opensearch-manual-snapshot/terraform/modules/opensearch-manual-snapshot#module-configuration-insight)
-2. [Reference Architecture](https://github.com/CBIIT/CTOS-DevOps-Innersource/tree/main/terraform/modules/opensearch-manual-snapshot#reference-architecture)
-3. [Resources](https://github.com/CBIIT/CTOS-DevOps-Innersource/tree/main/terraform/modules/opensearch-manual-snapshot#resources)
-4. [Inputs](https://github.com/CBIIT/CTOS-DevOps-Innersource/tree/main/terraform/modules/opensearch-manual-snapshot#inputs)
-5. [Outputs](https://github.com/CBIIT/CTOS-DevOps-Innersource/tree/main/terraform/modules/opensearch-manual-snapshot#outputs)
+1. [Module Configuration Insight](https://github.com/CBIIT/CTOS-DevOps-Innersource/tree/opensearch-manual-snapshot/terraform/modules/opensearch-manual-snapshot##module-configuration-insight)
+2. [Reference Architecture](https://github.com/CBIIT/CTOS-DevOps-Innersource/tree/main/terraform/modules/opensearch-manual-snapshot##reference-architecture)
+3. [Resources](https://github.com/CBIIT/CTOS-DevOps-Innersource/tree/main/terraform/modules/opensearch-manual-snapshot##resources)
+4. [Inputs](https://github.com/CBIIT/CTOS-DevOps-Innersource/tree/main/terraform/modules/opensearch-manual-snapshot##inputs)
+5. [Outputs](https://github.com/CBIIT/CTOS-DevOps-Innersource/tree/main/terraform/modules/opensearch-manual-snapshot##outputs)
 
 ## Module Configuration Insight
 
@@ -41,6 +41,38 @@ For more information, please see AWS' documentation on [creating index snapshots
 The reference architecture below depicts a multi-az deployment of an OpenSearch cluster that is using an EBS-enabled instance type. The cluster is configured with two data nodes per instance, which equates to a total of four data nodes and four VPC endpoints across the region. Lastly, this reference architecture reflects a configuration that enables manual snapshot activity. Snapshots are stored in AWS S3, and are managed by executables on the Jenkins host instance.
 
 ![Opensearch Boundary](./assets/diagram.png)
+
+## Template Module Input Variables
+<pre><code>
+module "opensearch" {
+  source = "github.com/CBIIT/CTOS-DevOps-Innersource/terraform/modules/opensearch-manual-snapshot"
+
+  app                         = 
+  availability_zone_count     = 
+  ebs_enabled                 = 
+  ebs_volume_size             = 
+  enable_os_application_logs  = 
+  enable_os_index_slow_logs   = 
+  enable_os_search_slow_logs  = 
+  engine_version              = 
+  hot_node_count              = 
+  hot_node_type               = 
+  iam_prefix                  = 
+  jenkins_security_group_id   = 
+  log_retention               = 
+  master_node_count           = 
+  master_node_enabled         = 
+  master_node_type            = 
+  multi_az                    = 
+  snapshot_hour               = 
+  subnet_ids                  =
+  tier                        = 
+  vpc_id                      = 
+  warm_node_count             = 
+  warm_node_enabled           = 
+  warm_node_type              = 
+}
+</code></pre>
 
 <!-- BEGIN_TF_DOCS -->
 ## Resources

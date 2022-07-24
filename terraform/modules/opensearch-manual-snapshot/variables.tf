@@ -88,3 +88,9 @@ variable "dedicated_master_type" {
   description = "The instance type that hosts the dedicated master nodes"
   default     = "m6g.large.search"
 }
+
+variable "availability_zones" {
+  type        = number
+  description = "Define the number of availability zones to provision the cluster into"
+  default     = 2
+}

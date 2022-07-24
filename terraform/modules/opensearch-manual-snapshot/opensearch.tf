@@ -5,11 +5,18 @@ resource "aws_opensearch_domain" "os" {
   cluster_config {
     instance_type          = var.instance_type
     instance_count         = var.data_node_count
-    zone_awareness_enabled = var.multi-az
+    zone_awareness_enabled = var.availability_zones > 1 ? true : false
 
     dedicated_master_enabled = var.dedicated_master_enabled
-    dedicated_master_count   = var.dedicated_master_count
-    dedicated_master_type    = var.dedicated_master_type
+    dedicated_master_count   = var.dedicated_master_enabled ? var.dedicated_master_count : null
+    dedicated_master_type    = var.dedicated_master_enabled ? var.dedicated_master_type : null
+
+    dynamic "zone_awareness_config" {
+      for_each = (var.availability_zones > 1) ? [var.availability_zones] : []
+      content {
+        availability_zone_count = zone_awareness_config.value
+      }
+    }
   }
 
   ebs_options {

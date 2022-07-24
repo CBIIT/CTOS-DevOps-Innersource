@@ -47,38 +47,52 @@ The reference architecture below depicts a multi-az deployment of an OpenSearch 
 
 | Name | Type |
 |------|------|
-| [aws_cloudwatch_log_group.opensearch](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group) | resource |
-| [aws_cloudwatch_log_resource_policy.opensearch](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_resource_policy) | resource |
+| [aws_cloudwatch_log_group.os_app](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group) | resource |
+| [aws_cloudwatch_log_group.os_index_slow](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group) | resource |
+| [aws_cloudwatch_log_group.os_search_slow](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group) | resource |
+| [aws_cloudwatch_log_resource_policy.os](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_resource_policy) | resource |
+| [aws_iam_service_linked_role.os](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_service_linked_role) | resource |
 | [aws_opensearch_domain.os](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/opensearch_domain) | resource |
+| [aws_opensearch_domain_policy.os](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/opensearch_domain_policy) | resource |
 | [aws_s3_bucket.opensearch_snapshot](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket) | resource |
 | [aws_s3_bucket_acl.opensearch_snapshot](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_acl) | resource |
 | [aws_s3_bucket_lifecycle_configuration.opensearch_snapshot](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_lifecycle_configuration) | resource |
 | [aws_s3_bucket_public_access_block.opensearch_snapshot](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block) | resource |
 | [aws_s3_bucket_server_side_encryption_configuration.opensearch_snapshot](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_server_side_encryption_configuration) | resource |
 | [aws_s3_bucket_versioning.opensearch_snapshot](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_versioning) | resource |
-| [aws_security_group.opensearch](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
+| [aws_security_group.os](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
+| [aws_security_group_rule.inbound_jenkins](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
+| [aws_security_group_rule.inbound_vpc](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
+| [aws_security_group_rule.self](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_app"></a> [app](#input\_app) | The name of the application, often times an acronym in all lower case (i.e. 'mtp'). | `string` | n/a | yes |
-| <a name="input_data_node_count"></a> [data\_node\_count](#input\_data\_node\_count) | Specify the number of OpenSearch data nodes per instance within the cluster | `number` | n/a | yes |
-| <a name="input_dedicated_master_count"></a> [dedicated\_master\_count](#input\_dedicated\_master\_count) | The number of dedicated master nodes | `number` | `3` | no |
-| <a name="input_dedicated_master_enabled"></a> [dedicated\_master\_enabled](#input\_dedicated\_master\_enabled) | Set to true to enable dedicated master nodes | `bool` | `false` | no |
-| <a name="input_dedicated_master_type"></a> [dedicated\_master\_type](#input\_dedicated\_master\_type) | The instance type that hosts the dedicated master nodes | `string` | `"m6g.large.search"` | no |
-| <a name="input_ebs_enabled"></a> [ebs\_enabled](#input\_ebs\_enabled) | Set to true to enable elastic block storage for your OpenSearch data nodes | `bool` | n/a | yes |
-| <a name="input_ebs_volume_size"></a> [ebs\_volume\_size](#input\_ebs\_volume\_size) | Specify the ebs volume size for each data node (in GiB) | `number` | n/a | yes |
-| <a name="input_engine_version"></a> [engine\_version](#input\_engine\_version) | The engine version of the OpenSearch cluster. Examples include OpenSearch\_1.0 and OpenSearch\_1.2 | `string` | n/a | yes |
+| <a name="input_app"></a> [app](#input\_app) | The name of the application, often times an acronym in all lower case characters (i.e. 'mtp') | `string` | n/a | yes |
+| <a name="input_availability_zone_count"></a> [availability\_zone\_count](#input\_availability\_zone\_count) | The number of availability zones to distribute cluster resources across | `number` | `2` | no |
+| <a name="input_ebs_enabled"></a> [ebs\_enabled](#input\_ebs\_enabled) | Set to true to enable elastic block storage for your OpenSearch data nodes | `bool` | `true` | no |
+| <a name="input_ebs_volume_size"></a> [ebs\_volume\_size](#input\_ebs\_volume\_size) | Specify the ebs volume size for each data node (in GiB) | `number` | `30` | no |
+| <a name="input_enable_os_application_logs"></a> [enable\_os\_application\_logs](#input\_enable\_os\_application\_logs) | Set to true to forward application (error) logs to CloudWatch | `bool` | `true` | no |
+| <a name="input_enable_os_index_slow_logs"></a> [enable\_os\_index\_slow\_logs](#input\_enable\_os\_index\_slow\_logs) | Set to true to forward index slow logs to CloudWatch | `bool` | `true` | no |
+| <a name="input_enable_os_search_slow_logs"></a> [enable\_os\_search\_slow\_logs](#input\_enable\_os\_search\_slow\_logs) | Set to true to forward search slow logs to CloudWatch | `bool` | `true` | no |
+| <a name="input_engine_version"></a> [engine\_version](#input\_engine\_version) | The engine version of the OpenSearch cluster (i.e. '1.2') | `string` | n/a | yes |
+| <a name="input_hot_node_count"></a> [hot\_node\_count](#input\_hot\_node\_count) | The number of hot data nodes to provision to the cluster | `number` | n/a | yes |
+| <a name="input_hot_node_type"></a> [hot\_node\_type](#input\_hot\_node\_type) | The instance type to provision for the hot data nodes in the cluster | `string` | `"m6g.large.search"` | no |
 | <a name="input_iam_prefix"></a> [iam\_prefix](#input\_iam\_prefix) | The string used to prefix the IAM role or policy name according to NCI power user governance | `string` | `"power-user"` | no |
-| <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | Specify the instance type for the OpenSearch cluster. For example, t3.medium.search | `string` | n/a | yes |
-| <a name="input_log_retention"></a> [log\_retention](#input\_log\_retention) | The number of days to save OpenSearch logs sent to CloudWatch | `number` | n/a | yes |
-| <a name="input_log_type"></a> [log\_type](#input\_log\_type) | The type of OpenSearch logs to forward to CloudWatch. Options include 'INDEX\_SLOW\_LOGS, 'SEARCH\_SLOW\_LOGS', 'ES\_APPLICATION\_LOGS', and 'AUDIT\_LOGS' | `string` | `"INDEX_SLOW_LOGS"` | no |
-| <a name="input_multi-az"></a> [multi-az](#input\_multi-az) | Set this value to true in order to provision a multi-availability zone cluster distribution | `bool` | n/a | yes |
+| <a name="input_jenkins_security_group_id"></a> [jenkins\_security\_group\_id](#input\_jenkins\_security\_group\_id) | The ID of the Security Group associated with the Jenkins instance | `string` | n/a | yes |
+| <a name="input_log_retention"></a> [log\_retention](#input\_log\_retention) | The number of days to save OpenSearch logs sent to CloudWatch | `number` | `90` | no |
+| <a name="input_master_node_count"></a> [master\_node\_count](#input\_master\_node\_count) | The number of dedicated master nodes to support the cluster | `number` | `3` | no |
+| <a name="input_master_node_enabled"></a> [master\_node\_enabled](#input\_master\_node\_enabled) | Set to true to provision dedicated master nodes for the cluster | `bool` | n/a | yes |
+| <a name="input_master_node_type"></a> [master\_node\_type](#input\_master\_node\_type) | The instance type to provision for the dedicated master nodes in the cluster | `string` | `"m6g.large.search"` | no |
+| <a name="input_multi_az"></a> [multi\_az](#input\_multi\_az) | Set to true to distribute cluster resources across multiple availability zones | `bool` | n/a | yes |
 | <a name="input_snapshot_hour"></a> [snapshot\_hour](#input\_snapshot\_hour) | The hour in which OpenSearch will perform automated snapshot operations | `number` | `23` | no |
 | <a name="input_subnet_ids"></a> [subnet\_ids](#input\_subnet\_ids) | The subnets which OpenSearch will be deployed to | `set(string)` | n/a | yes |
-| <a name="input_tier"></a> [tier](#input\_tier) | The target tier for the deployment. If using workspaces, provide 'terraform.workspace' as the input variable value | `string` | n/a | yes |
+| <a name="input_tier"></a> [tier](#input\_tier) | The target tier for the deployment. If using workspaces, provide 'terraform.workspace' when providing a value for this variable | `string` | n/a | yes |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | The ID of the target VPC for the OpenSearch cluster | `string` | n/a | yes |
+| <a name="input_warm_node_count"></a> [warm\_node\_count](#input\_warm\_node\_count) | The number of warm nodes in the cluster. Valid values are between 2 and 150 | `number` | `2` | no |
+| <a name="input_warm_node_enabled"></a> [warm\_node\_enabled](#input\_warm\_node\_enabled) | Whether or not to enable warm nodes for the cluster | `bool` | `false` | no |
+| <a name="input_warm_node_type"></a> [warm\_node\_type](#input\_warm\_node\_type) | Instance type for the OpenSearch cluster's warm nodes. Valid values are ultrawarm1.medium.search, ultrawarm1.large.search and ultrawarm1.xlarge.search | `string` | `"ultrawarm1.large.search"` | no |
 
 ## Outputs
 

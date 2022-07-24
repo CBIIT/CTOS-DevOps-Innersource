@@ -71,6 +71,11 @@ resource "aws_opensearch_domain" "os" {
     log_type                 = "ES_APPLICATION_LOGS"
   }
 
+  depends_on = [
+    aws_cloudwatch_log_group.os_app,
+    aws_cloudwatch_log_group.os_index_slow,
+    aws_cloudwatch_log_group.os_search_slow
+  ]
 }
 
 resource "aws_opensearch_domain_policy" "os" {

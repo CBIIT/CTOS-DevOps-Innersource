@@ -11,7 +11,7 @@ resource "aws_security_group_rule" "inbound_jenkins" {
   from_port                = 443
   protocol                 = "tcp"
   to_port                  = 443
-  source_security_group_id = var.jenkins_security_group_id
+  cidr_blocks              = [ var.jenkins_cidr ]
 
   lifecycle {
     create_before_destroy = true

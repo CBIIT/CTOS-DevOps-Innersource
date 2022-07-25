@@ -61,9 +61,9 @@ variable "iam_prefix" {
   default     = "power-user"
 }
 
-variable "jenkins_security_group_id" {
+variable "jenkins_cidr" {
   type        = string
-  description = "The ID of the Security Group associated with the Jenkins instance"
+  description = "The CIDR range that Jenkins belongs to"
 }
 
 variable "log_retention" {

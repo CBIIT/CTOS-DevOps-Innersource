@@ -61,11 +61,6 @@ variable "iam_prefix" {
   default     = "power-user"
 }
 
-variable "jenkins_cidr" {
-  type        = string
-  description = "The CIDR range that Jenkins belongs to"
-}
-
 variable "log_retention" {
   type        = number
   description = "The number of days to save OpenSearch logs sent to CloudWatch"

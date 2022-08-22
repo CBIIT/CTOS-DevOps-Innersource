@@ -1,6 +1,10 @@
 
 resource "aws_ecs_cluster" "ecs_cluster" {
   name = local.ecs_cluster_name
+  setting {
+    name = "containerInsights"
+    value = "enabled"
+  }
   tags = merge(
     {
       "Name" = format("%s-%s-%s", var.app, "ecs-cluster", terraform.workspace)

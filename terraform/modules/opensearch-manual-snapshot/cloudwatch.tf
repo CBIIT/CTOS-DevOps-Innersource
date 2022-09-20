@@ -1,28 +1,19 @@
-resource "aws_cloudwatch_log_group" "opensearch" {
-  name              = local.log_group
+resource "aws_cloudwatch_log_group" "os_index_slow" {
+  name              = "${local.domain}-index-slow-logs"
   retention_in_days = var.log_retention
-
 }
 
-resource "aws_cloudwatch_log_resource_policy" "opensearch" {
+resource "aws_cloudwatch_log_group" "os_search_slow" {
+  name              = "${local.domain}-search-slow-logs"
+  retention_in_days = var.log_retention
+}
+
+resource "aws_cloudwatch_log_group" "os_app" {
+  name              = "${local.domain}-application-logs"
+  retention_in_days = var.log_retention
+}
+
+resource "aws_cloudwatch_log_resource_policy" "os" {
   policy_name     = local.log_policy
-  policy_document = <<CONFIG
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Principal": {
-        "Service": "es.amazonaws.com"
-      },
-      "Action": [
-        "logs:PutLogEvents",
-        "logs:PutLogEventsBatch",
-        "logs:CreateLogStream"
-      ],
-      "Resource": "arn:aws:logs:*"
-    }
-  ]
-}
-CONFIG
+  policy_document = data.aws_iam_policy_document.cloudwatch.json
 }

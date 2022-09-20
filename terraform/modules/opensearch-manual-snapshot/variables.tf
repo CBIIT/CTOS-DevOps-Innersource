@@ -1,52 +1,97 @@
 variable "app" {
   type        = string
-  description = "The name of the application, often times an acronym in all lower case (i.e. 'mtp')."
+  description = "The name of the application, often times an acronym in all lower case characters (i.e. 'mtp')"
 }
 
-variable "tier" {
-  type        = string
-  description = "The target tier for the deployment. If using workspaces, provide 'terraform.workspace' as the input variable value"
+variable "availability_zone_count" {
+  type        = number
+  description = "The number of availability zones to distribute cluster resources across"
+  default     = 2
+}
+
+variable "ebs_enabled" {
+  type        = bool
+  description = "Set to true to enable elastic block storage for your OpenSearch data nodes"
+  default     = true
+}
+
+variable "ebs_volume_size" {
+  type        = number
+  description = "Specify the ebs volume size for each data node (in GiB)"
+  default     = 30
+}
+
+variable "enable_os_application_logs" {
+  type        = bool
+  description = "Set to true to forward application (error) logs to CloudWatch"
+  default     = true
+}
+
+variable "enable_os_index_slow_logs" {
+  type        = bool
+  description = "Set to true to forward index slow logs to CloudWatch"
+  default     = true
+}
+
+variable "enable_os_search_slow_logs" {
+  type        = bool
+  description = "Set to true to forward search slow logs to CloudWatch"
+  default     = true
 }
 
 variable "engine_version" {
   type        = string
-  description = "The engine version of the OpenSearch cluster. Examples include OpenSearch_1.0 and OpenSearch_1.2"
+  description = "The engine version of the OpenSearch cluster (i.e. '1.2')"
 }
 
-variable "instance_type" {
-  type = string
-  description = "Specify the instance type for the OpenSearch cluster. For example, t3.medium.search"
+variable "hot_node_count" {
+  type        = number
+  description = "The number of hot data nodes to provision to the cluster"
+}
+
+variable "hot_node_type" {
+  type        = string
+  description = "The instance type to provision for the hot data nodes in the cluster"
+  default     = "m6g.large.search"
 }
 
 variable "iam_prefix" {
-  type = string
+  type        = string
   description = "The string used to prefix the IAM role or policy name according to NCI power user governance"
-  default = "power-user"
+  default     = "power-user"
 }
 
-variable "data_node_count" {
-  type = number
-  description = "Specify the number of OpenSearch data nodes per instance within the cluster"
+variable "jenkins_cidr" {
+  type        = string
+  description = "The CIDR range that Jenkins belongs to"
 }
 
-variable "multi-az" {
-  type = bool
-  description = "Set this value to true in order to provision a multi-availability zone cluster distribution"
+variable "log_retention" {
+  type        = number
+  description = "The number of days to save OpenSearch logs sent to CloudWatch"
+  default     = 90
 }
 
-variable "ebs_enabled" {
-  type = bool
-  description = "Set to true to enable elastic block storage for your OpenSearch data nodes"
+variable "master_node_count" {
+  type        = number
+  description = "The number of dedicated master nodes to support the cluster"
+  default     = 3
 }
 
-variable "ebs_volume_size" {
-  type = number
-  description = "Specify the ebs volume size for each data node (in GiB)"
+variable "master_node_enabled" {
+  type        = bool
+  description = "Set to true to provision dedicated master nodes for the cluster"
 }
 
-variable "subnet_ids" {
-  type        = set(string)
-  description = "The subnets which OpenSearch will be deployed to"
+variable "master_node_type" {
+  type        = string
+  description = "The instance type to provision for the dedicated master nodes in the cluster"
+  default     = "m6g.large.search"
+}
+
+variable "multi_az" {
+  type        = bool
+  description = "Set to true to distribute cluster resources across multiple availability zones"
 }
 
 variable "snapshot_hour" {
@@ -55,18 +100,35 @@ variable "snapshot_hour" {
   default     = 23
 }
 
-variable "log_type" {
-  type        = string
-  description = "The type of OpenSearch logs to forward to CloudWatch. Options include 'INDEX_SLOW_LOGS, 'SEARCH_SLOW_LOGS', 'ES_APPLICATION_LOGS', and 'AUDIT_LOGS'"
-  default     = "INDEX_SLOW_LOGS"
+variable "subnet_ids" {
+  type        = set(string)
+  description = "The subnets which OpenSearch will be deployed to"
 }
 
-variable "log_retention" {
+variable "tier" {
+  type        = string
+  description = "The target tier for the deployment. If using workspaces, provide 'terraform.workspace' when providing a value for this variable"
+}
+
+variable "warm_node_count" {
   type        = number
-  description = "The number of days to save OpenSearch logs sent to CloudWatch"
+  description = "The number of warm nodes in the cluster. Valid values are between 2 and 150"
+  default     = 2
+}
+
+variable "warm_node_enabled" {
+  type        = bool
+  description = "Whether or not to enable warm nodes for the cluster"
+  default     = false
+}
+
+variable "warm_node_type" {
+  type        = string
+  description = "Instance type for the OpenSearch cluster's warm nodes. Valid values are ultrawarm1.medium.search, ultrawarm1.large.search and ultrawarm1.xlarge.search"
+  default     = "ultrawarm1.large.search"
 }
 
 variable "vpc_id" {
-  type = string
+  type        = string
   description = "The ID of the target VPC for the OpenSearch cluster"
 }

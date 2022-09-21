@@ -1,6 +1,10 @@
 ---
 #  removed the scripts for setting neo4j and bearer values
 
+- name: show vars
+  debug:
+    msg: "{{ config_version }}"
+
 - name: copy  nginx conf
   copy:
     src: 'nginx-ppdc.conf'

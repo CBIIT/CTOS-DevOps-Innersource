@@ -94,7 +94,6 @@ module "opensearch" {
 | [aws_s3_bucket_versioning.opensearch_snapshot](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_versioning) | resource |
 | [aws_security_group.os](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
 | [aws_security_group_rule.inbound_jenkins](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
-| [aws_security_group_rule.inbound_vpc](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
 | [aws_security_group_rule.self](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
 
 ## Inputs
@@ -112,7 +111,7 @@ module "opensearch" {
 | <a name="input_hot_node_count"></a> [hot\_node\_count](#input\_hot\_node\_count) | The number of hot data nodes to provision to the cluster | `number` | n/a | yes |
 | <a name="input_hot_node_type"></a> [hot\_node\_type](#input\_hot\_node\_type) | The instance type to provision for the hot data nodes in the cluster | `string` | `"m6g.large.search"` | no |
 | <a name="input_iam_prefix"></a> [iam\_prefix](#input\_iam\_prefix) | The string used to prefix the IAM role or policy name according to NCI power user governance | `string` | `"power-user"` | no |
-| <a name="input_jenkins_security_group_id"></a> [jenkins\_security\_group\_id](#input\_jenkins\_security\_group\_id) | The ID of the Security Group associated with the Jenkins instance | `string` | n/a | yes |
+| <a name="input_jenkins_cidr"></a> [jenkins\_cidr](#input\_jenkins\_cidr) | The CIDR range that Jenkins belongs to | `string` | n/a | yes |
 | <a name="input_log_retention"></a> [log\_retention](#input\_log\_retention) | The number of days to save OpenSearch logs sent to CloudWatch | `number` | `90` | no |
 | <a name="input_master_node_count"></a> [master\_node\_count](#input\_master\_node\_count) | The number of dedicated master nodes to support the cluster | `number` | `3` | no |
 | <a name="input_master_node_enabled"></a> [master\_node\_enabled](#input\_master\_node\_enabled) | Set to true to provision dedicated master nodes for the cluster | `bool` | n/a | yes |

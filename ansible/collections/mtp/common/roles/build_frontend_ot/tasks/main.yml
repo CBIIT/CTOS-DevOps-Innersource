@@ -1,0 +1,89 @@
+---
+#  removed the scripts for setting neo4j and bearer values
+
+- name: show vars
+  debug:
+    msg: "{{ config_version }}"
+
+- name: copy  nginx conf
+  copy:
+    src: 'nginx-ppdc.conf'
+    dest: '{{workspace}}/{{ project_name }}-frontend/apps/platform/public/nginx.conf'
+    mode: 0755
+
+- name: copy entrypoint.sh to workspace
+  copy:
+    src: "nginx-entrypoint.sh"
+    dest: "{{workspace}}/{{ project_name }}-frontend/apps/platform/public/nginx-entrypoint.sh"
+    mode: 0755
+
+- name: run yarn install in {{workspace}}/{{ project_name }}-frontend
+  shell: yarn install
+  environment:
+    NODE_OPTIONS: --max-old-space-size=2048
+  args:
+    chdir: "{{workspace}}/{{ project_name }}-frontend"
+
+- name: run yarn build in {{workspace}}/{{ project_name }}-frontend
+  shell: yarn build
+  args:
+    chdir: "{{workspace}}/{{ project_name }}-frontend"
+
+- name: copy env to build
+  copy:
+    src: inject.template.js
+    dest: "{{workspace}}/{{ project_name }}-frontend/apps/platform/bundle-platform/inject.template.js"
+    mode: 0755
+          
+- name: rename build to dist to avoid .dockerignore problem with build directory
+  command: mv bundle-platform dist
+  args:
+    chdir: "{{workspace}}/{{ project_name }}-frontend/apps/platform/"
+
+- name: copy docker file to build path
+  copy:
+    remote_src: yes
+    src: '{{ dockerfile_path }}'
+    dest: '{{ container_build_path }}/Dockerfile'
+
+- name: build {{ project_name }}-{{container_name}} image
+  community.docker.docker_image:
+    build:
+      args:
+        ECR_REPO: "{{ container_registry_url }}"
+      path: "{{ container_build_path }}"
+      dockerfile: "{{ container_build_path }}/Dockerfile"
+      pull: yes
+    name: "{{ project_name }}-{{ container_name }}-{{ tier }}"
+    tag: "{{ image_version }}-{{ build_number }}"
+    push: no
+    force_source: yes
+    source: build
+
+- name: test image for vulnerabilities
+  block:
+    - name: run trivy scanner on 
+      command: "trivy image --severity HIGH,CRITICAL {{ project_name }}-{{ container_name }}-{{ tier }}:{{ image_version }}-{{ build_number }}"
+      register: vuln_results
+  always:
+    - name: echo vulnerability results
+      debug:
+        msg: "{{ vuln_results.stdout_lines }}"
+
+- name: Add {{ project_name }}-{{ container_name }}-ot image to ECR
+  community.docker.docker_image:
+    name: "{{ project_name }}-{{ container_name }}-{{ tier }}"
+    repository: "{{ container_registry_url }}/{{ project_name }}-{{ container_name }}-{{ tier }}"
+    tag: "{{ image_version }}-{{ build_number }}"
+    force_tag: yes
+    push: yes
+    source: local
+
+- name: Add tag latest to {{ project_name }}-{{container_name}} image
+  community.docker.docker_image:
+    name: "{{ container_registry_url }}/{{ project_name }}-{{ container_name }}-{{ tier }}:{{ image_version }}-{{build_number}}"
+    repository: "{{ container_registry_url }}/{{ project_name }}-{{ container_name }}-{{ tier }}:latest"
+    force_tag: yes
+    push: yes
+    source: local
+

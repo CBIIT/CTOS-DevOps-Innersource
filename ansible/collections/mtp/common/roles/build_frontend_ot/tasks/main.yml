@@ -8,13 +8,13 @@
 - name: copy  nginx conf
   copy:
     src: 'nginx-ppdc.conf'
-    dest: '{{workspace}}/{{ project_name }}-frontend/apps/platform/public/nginx.conf'
+    dest: '{{workspace}}/{{ project_name }}-frontend/apps/platform/nginx.conf'
     mode: 0755
 
 - name: copy entrypoint.sh to workspace
   copy:
     src: "nginx-entrypoint.sh"
-    dest: "{{workspace}}/{{ project_name }}-frontend/apps/platform/public/nginx-entrypoint.sh"
+    dest: "{{workspace}}/{{ project_name }}-frontend/apps/platform/nginx-entrypoint.sh"
     mode: 0755
 
 - name: run yarn install in {{workspace}}/{{ project_name }}-frontend

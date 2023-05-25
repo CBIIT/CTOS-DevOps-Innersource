@@ -60,7 +60,7 @@
       dockerfile: "{{ dockerfile_path }}"
       pull: yes
       nocache: yes
-    name: "{{ project_name }}-{{ container_name }}-{{ tier }}"
+    name: "{{ program }}-{{ project_name }}-{{ container_name }}"
     tag: "{{ image_version }}-{{ build_number }}"
     push: no
     force_source: yes
@@ -78,8 +78,8 @@
 
 - name: Add {{ project_name }}-{{ container_name }} image to ECR
   docker_image:
-    name: "{{ project_name }}-{{ container_name }}-{{ tier }}"
-    repository: "{{ container_registry_url }}/{{ project_name }}-{{ container_name }}-{{ tier }}"
+    name: "{{ program }}-{{ project_name }}-{{ container_name }}"
+    repository: "{{ container_registry_url }}/{{ program }}-{{ project_name }}-{{ container_name }}"
     tag: "{{ image_version }}-{{ build_number }}"
     force_tag: yes
     push: yes
@@ -87,8 +87,8 @@
 
 - name: Add tag latest to {{ project_name }}-{{container_name}} image
   community.docker.docker_image:
-    name: "{{ container_registry_url }}/{{ project_name }}-{{ container_name }}-{{ tier }}:{{ image_version }}-{{build_number}}"
-    repository: "{{ container_registry_url }}/{{ project_name }}-{{ container_name }}-{{ tier }}:latest"
+    name: "{{ container_registry_url }}/{{ program }}-{{ project_name }}-{{ container_name }}:{{ image_version }}-{{build_number}}"
+    repository: "{{ container_registry_url }}/{{ program }}-{{ project_name }}-{{ container_name }}:latest"
     force_tag: yes
     push: yes
     source: local

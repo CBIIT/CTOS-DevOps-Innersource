@@ -3,9 +3,11 @@
 
 | Name | Type |
 |------|------|
+| [aws_ecr_lifecycle_policy.backend_api_ecr_lifecycle_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_lifecycle_policy) | resource |
 | [aws_ecr_lifecycle_policy.backend_ecr_lifecycle_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_lifecycle_policy) | resource |
 | [aws_ecr_lifecycle_policy.frontend_ecr_lifecycle_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_lifecycle_policy) | resource |
 | [aws_ecr_repository.backend](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_repository) | resource |
+| [aws_ecr_repository.backend_api](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_repository) | resource |
 | [aws_ecr_repository.frontend](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_repository) | resource |
 
 ## Inputs
@@ -20,6 +22,10 @@
 
 | Name | Description |
 |------|-------------|
+| <a name="output_backend_api_registry_id"></a> [backend\_api\_registry\_id](#output\_backend\_api\_registry\_id) | n/a |
+| <a name="output_backend_api_repo_arn"></a> [backend\_api\_repo\_arn](#output\_backend\_api\_repo\_arn) | n/a |
+| <a name="output_backend_api_repo_name"></a> [backend\_api\_repo\_name](#output\_backend\_api\_repo\_name) | n/a |
+| <a name="output_backend_api_repo_url"></a> [backend\_api\_repo\_url](#output\_backend\_api\_repo\_url) | n/a |
 | <a name="output_backend_registry_id"></a> [backend\_registry\_id](#output\_backend\_registry\_id) | n/a |
 | <a name="output_backend_repo_arn"></a> [backend\_repo\_arn](#output\_backend\_repo\_arn) | n/a |
 | <a name="output_backend_repo_name"></a> [backend\_repo\_name](#output\_backend\_repo\_name) | n/a |

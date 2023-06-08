@@ -42,6 +42,11 @@ variable "backend_target_group_arn" {
   type        = string
 }
 
+variable "backend_api_target_group_arn" {
+  description = "backend api target group arn value"
+  type        = string
+}
+
 variable "requires_compatibilities" {
   description = "Set of launch types required by the task"
   type        = set(string)
@@ -78,12 +83,29 @@ variable "backend_memory_usage" {
   default     = "1024"
 }
 
+variable "backend_api_cpu_usage" {
+  description = "number of cpu units used by the task"
+  type        = string
+  default     = "512"
+}
+
+variable "backend_api_memory_usage" {
+  description = "The amount (in MiB) of memory used by the task"
+  type        = string
+  default     = "1024"
+}
+
 variable "frontend_container_image_name" {
   description = "Image used in the frontend container"
   type        = string
 }
 
 variable "backend_container_image_name" {
+  description = "Image used in the backend container"
+  type        = string
+}
+
+variable "backend_api_container_image_name" {
   description = "Image used in the backend container"
   type        = string
 }
@@ -109,4 +131,10 @@ variable "backend_port" {
   description = "backend container port to use in ECS"
   type        = number
   default     = 8080
+}
+
+variable "backend_api_port" {
+  description = "backend container port to use in ECS"
+  type        = number
+  default     = 8081
 }

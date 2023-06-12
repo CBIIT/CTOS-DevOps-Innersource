@@ -3,14 +3,18 @@
 
 | Name | Type |
 |------|------|
+| [aws_appautoscaling_policy.backend_api_scaling_cpu](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/appautoscaling_policy) | resource |
 | [aws_appautoscaling_policy.backend_scaling_cpu](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/appautoscaling_policy) | resource |
 | [aws_appautoscaling_policy.frontend_scaling_cpu](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/appautoscaling_policy) | resource |
+| [aws_appautoscaling_target.backend_api_target](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/appautoscaling_target) | resource |
 | [aws_appautoscaling_target.backend_target](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/appautoscaling_target) | resource |
 | [aws_appautoscaling_target.frontend_target](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/appautoscaling_target) | resource |
 | [aws_ecs_cluster.ecs_cluster](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_cluster) | resource |
 | [aws_ecs_service.ecs_service_backend](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_service) | resource |
+| [aws_ecs_service.ecs_service_backend_api](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_service) | resource |
 | [aws_ecs_service.ecs_service_frontend](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_service) | resource |
 | [aws_ecs_task_definition.backend](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition) | resource |
+| [aws_ecs_task_definition.backend_api](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition) | resource |
 | [aws_ecs_task_definition.frontend](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition) | resource |
 | [aws_iam_policy.ecs_log_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
 | [aws_iam_role.task_execution_role](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
@@ -24,6 +28,11 @@
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_app"></a> [app](#input\_app) | The name of the stack or application for this deployment | `string` | n/a | yes |
+| <a name="input_backend_api_container_image_name"></a> [backend\_api\_container\_image\_name](#input\_backend\_api\_container\_image\_name) | Image used in the backend container | `string` | n/a | yes |
+| <a name="input_backend_api_cpu_usage"></a> [backend\_api\_cpu\_usage](#input\_backend\_api\_cpu\_usage) | number of cpu units used by the task | `string` | `"512"` | no |
+| <a name="input_backend_api_memory_usage"></a> [backend\_api\_memory\_usage](#input\_backend\_api\_memory\_usage) | The amount (in MiB) of memory used by the task | `string` | `"1024"` | no |
+| <a name="input_backend_api_port"></a> [backend\_api\_port](#input\_backend\_api\_port) | backend container port to use in ECS | `number` | `8081` | no |
+| <a name="input_backend_api_target_group_arn"></a> [backend\_api\_target\_group\_arn](#input\_backend\_api\_target\_group\_arn) | backend api target group arn value | `string` | n/a | yes |
 | <a name="input_backend_container_image_name"></a> [backend\_container\_image\_name](#input\_backend\_container\_image\_name) | Image used in the backend container | `string` | n/a | yes |
 | <a name="input_backend_cpu_usage"></a> [backend\_cpu\_usage](#input\_backend\_cpu\_usage) | number of cpu units used by the task | `string` | `"512"` | no |
 | <a name="input_backend_memory_usage"></a> [backend\_memory\_usage](#input\_backend\_memory\_usage) | The amount (in MiB) of memory used by the task | `string` | `"1024"` | no |

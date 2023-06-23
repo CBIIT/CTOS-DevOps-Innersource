@@ -16,6 +16,13 @@
       #      awslogs-region: "{{ region }}"
       #      awslogs-create-group: "true"
       #      awslogs-stream-prefix: "{{ project_name }}-{{ container_name }}"
+      - name: sumologic-firelens
+        essential: true
+        image: "public.ecr.aws/aws-observability/aws-for-fluent-bit:stable"
+        firelensConfiguration:
+          type: fluentbit
+          options:
+            enable-ecs-log-metadata: "true"
       - name: "{{ app_name }}-{{microservice}}"
         essential: true
         image: "newrelic/nri-ecs:1.9.2"
@@ -48,17 +55,17 @@
         portMappings:
           - containerPort: "{{ container_port }}"
             hostPort: "{{ container_port }}"
-        # logConfiguration:
-        #   logDriver: awsfirelens
-        #   options:
-        #     Name: "http"
-        #     Host: "{{ sumo_collector_endpoint }}"
-        #     URI: "/receiver/v1/http/{{ sumo_collector_token }}"
-        #     Port: "443"
-        #     tls: "on"
-        #     tls.verify: "off"
-        #     Format: "json_lines"
-        #     Retry_Limit: "2"
+        logConfiguration:
+          logDriver: awsfirelens
+          options:
+            Name: "http"
+            Host: "{{ sumo_collector_endpoint }}"
+            URI: "/receiver/v1/http/{{ sumo_collector_token }}"
+            Port: "443"
+            tls: "on"
+            tls.verify: "off"
+            Format: "json_lines"
+            Retry_Limit: "2"
         logConfiguration:
          logDriver: awslogs
          options:

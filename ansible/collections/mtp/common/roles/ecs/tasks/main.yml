@@ -66,13 +66,13 @@
             tls.verify: "off"
             Format: "json_lines"
             Retry_Limit: "2"
-        logConfiguration:
-         logDriver: awslogs
-         options:
-           awslogs-group: "/ecs/{{ project_name }}/{{ tier }}-{{ microservice }}/{{ microservice }}/logs"
-           awslogs-region: "{{ region }}"
-           awslogs-create-group: "true"
-           awslogs-stream-prefix: "{{ project_name }}-{{ microservice }}"
+        # logConfiguration:
+        #  logDriver: awslogs
+        #  options:
+        #    awslogs-group: "/ecs/{{ project_name }}/{{ tier }}-{{ microservice }}/{{ microservice }}/logs"
+        #    awslogs-region: "{{ region }}"
+        #    awslogs-create-group: "true"
+        #    awslogs-stream-prefix: "{{ project_name }}-{{ microservice }}"
     launch_type: FARGATE
     network_mode: awsvpc
     execution_role_arn: "arn:aws:iam::{{ account }}:role/{{ execution_role }}" #{{ iam_prefix }}-{{ project_name }}-ecs-task-execution-role-{{ tier }}"
